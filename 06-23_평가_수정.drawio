@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-06-22T23:24:33.179Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="XNKW3_nc5W_SJaz7UtOI" version="21.5.0" type="device" pages="8">
+<mxfile host="app.diagrams.net" modified="2023-06-23T00:17:26.852Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36" etag="irPquks-l_9l0QgfqTuN" version="21.5.0" type="device" pages="8">
   <diagram id="J9ctfZpjFAYpr1_emeNR" name="유스케이스명세서">
     <mxGraphModel dx="1887" dy="904" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="3300" pageHeight="4681" math="0" shadow="0">
       <root>
@@ -622,22 +622,22 @@
           <mxGeometry x="25" y="320" width="160" height="30" as="geometry" />
         </mxCell>
         <mxCell id="l9HmKswWwSfvelRIQ-kn-1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;회원 CRUD Class&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ field: Type&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;정보 등록 C&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;정보 조회 R&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;정보 수정 U&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;정보 삭제 D&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="40" y="370" width="160" height="130" as="geometry" />
+          <mxGeometry x="35" y="400" width="160" height="130" as="geometry" />
         </mxCell>
         <mxCell id="l9HmKswWwSfvelRIQ-kn-2" value="회원&lt;br&gt;테이블" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
-          <mxGeometry x="225" y="390" width="50" height="70" as="geometry" />
+          <mxGeometry x="225" y="430" width="50" height="70" as="geometry" />
         </mxCell>
         <mxCell id="dRN5MbobD9oSYFdVCJVG-1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;주소 테이블 CRUD Class&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ field: Type&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;주소 정보 등록 C&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;주소 조회 R&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;주소 수정 U&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;주소 삭제 D&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="310" y="370" width="160" height="140" as="geometry" />
+          <mxGeometry x="310" y="400" width="160" height="140" as="geometry" />
         </mxCell>
         <mxCell id="dRN5MbobD9oSYFdVCJVG-2" value="주문&amp;nbsp;&lt;br&gt;테이블" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
-          <mxGeometry x="495" y="390" width="50" height="70" as="geometry" />
+          <mxGeometry x="495" y="430" width="50" height="70" as="geometry" />
         </mxCell>
         <mxCell id="dRN5MbobD9oSYFdVCJVG-3" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;주문 테이블 CRUD Class&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ field: Type&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;주문 정보 등록 C&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;주문 조회 R&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;주문 취소 D&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="565" y="370" width="160" height="140" as="geometry" />
+          <mxGeometry x="560" y="400" width="160" height="140" as="geometry" />
         </mxCell>
         <mxCell id="dRN5MbobD9oSYFdVCJVG-4" value="주문&amp;nbsp;&lt;br&gt;테이블" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" parent="1" vertex="1">
-          <mxGeometry x="750" y="390" width="50" height="70" as="geometry" />
+          <mxGeometry x="750" y="430" width="50" height="70" as="geometry" />
         </mxCell>
         <mxCell id="9m-Y6SZB4GwYZ-t8gkYl-1" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;주문Class&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;+ field: Type&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;주문 처리&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" parent="1" vertex="1">
           <mxGeometry x="40" y="583" width="160" height="90" as="geometry" />
@@ -749,6 +749,24 @@
         </mxCell>
         <mxCell id="DLb7AneRJwEO6H0vaK5N-7" value="/addr_delete" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
           <mxGeometry x="540" y="1390" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JFlWRR6q54CSENPv851d-1" value="MembDAO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="40" y="360" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JFlWRR6q54CSENPv851d-2" value="AddrDAO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="315" y="360" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JFlWRR6q54CSENPv851d-3" value="OrderDAO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="555" y="360" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JFlWRR6q54CSENPv851d-4" value="&lt;p style=&quot;margin:0px;margin-top:4px;text-align:center;&quot;&gt;&lt;b&gt;상품 정보 Class&lt;/b&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;상품id&lt;/p&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;hr size=&quot;1&quot;&gt;&lt;p style=&quot;margin:0px;margin-left:4px;&quot;&gt;상품 정보 조회 R&lt;/p&gt;" style="verticalAlign=top;align=left;overflow=fill;fontSize=12;fontFamily=Helvetica;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="840" y="400" width="160" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="JFlWRR6q54CSENPv851d-5" value="상품&lt;br&gt;테이블" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="435" width="50" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="JFlWRR6q54CSENPv851d-6" value="ProdDAO" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="845" y="360" width="70" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
