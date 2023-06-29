@@ -37,11 +37,20 @@ public class AddrDao {
 	
 	public List<AddrDto> select()
 	{
+		pstmt = conn.prepareStatement();
+		
+		rs = pstmt.executeQuery(id);
+		
+		
 		return null;	
 	}
 	
 	public int insert(AddrDto dto)
 	{
+		
+		
+		
+		
 		return 0;
 	}
 	
