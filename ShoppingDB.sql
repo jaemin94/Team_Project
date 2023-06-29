@@ -56,6 +56,7 @@ CREATE TABLE `tbl_member` (
   `pw` varchar(45) DEFAULT NULL,
   `name` varchar(45) DEFAULT NULL,
   `adr_addr` varchar(255) DEFAULT NULL,
+  `role` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`member_id`),
   KEY `FK_Member_Addr_idx` (`adr_addr`),
   CONSTRAINT `FK_Member_Addr` FOREIGN KEY (`adr_addr`) REFERENCES `tbl_addr` (`adr_addr`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -90,10 +91,10 @@ CREATE TABLE `tbl_order` (
   PRIMARY KEY (`order_id`),
   KEY `FK_Member_Order_idx` (`member_id`),
   KEY `FK_Addr_Order_idx` (`adr_addr`),
-  KEY `FK_Product_Order_idx` (`product_code`),
+  KEY `FK_Product_Order_idx` (`product_code`,`product_name`),
   CONSTRAINT `FK_Addr_Order` FOREIGN KEY (`adr_addr`) REFERENCES `tbl_addr` (`adr_addr`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_Member_Order` FOREIGN KEY (`member_id`) REFERENCES `tbl_member` (`member_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `FK_Product_Order` FOREIGN KEY (`product_code`) REFERENCES `tbl_product` (`product_code`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `FK_Product_Order` FOREIGN KEY (`product_code`, `product_name`) REFERENCES `tbl_product` (`product_code`, `product_name`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -115,9 +116,9 @@ DROP TABLE IF EXISTS `tbl_product`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tbl_product` (
   `product_code` int NOT NULL,
-  `product_name` varchar(45) DEFAULT NULL,
+  `product_name` varchar(45) NOT NULL,
   `amount` int DEFAULT NULL,
-  PRIMARY KEY (`product_code`)
+  PRIMARY KEY (`product_code`,`product_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -139,4 +140,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-29  9:07:40
+-- Dump completed on 2023-06-29 11:38:03
