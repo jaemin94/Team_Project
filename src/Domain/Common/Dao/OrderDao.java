@@ -12,15 +12,25 @@ import Domain.Common.Dto.AddrDto;
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
 
+
+
 public class OrderDao {
 
 	private String id;
 	private String pw;
 	private String url;
 	
+	private String userid;
+	private String prodid;
+	private String useraddr;
+	
+	
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
+	
+	
+	
 	
 	public OrderDao()
 	{
@@ -78,8 +88,8 @@ public class OrderDao {
 			pstmt = conn.prepareStatement("insert into tbl_order values(?,null,null,?,null,?,curdate(),?)");
 			pstmt.setString(1, dto.getOrder_id());
 			pstmt.setString(2, dto.getProduct_name());
-			pstmt.setInt(3, dto.getOdr_amount());
-			pstmt.setInt(4, dto.getPrice());
+			pstmt.setInt(3, dto.getPrice());
+			pstmt.setString(4, dto.getOrder_id());
 			int result = pstmt.executeUpdate();
 			pstmt.close();
 			return result;
@@ -93,10 +103,11 @@ public class OrderDao {
 	public int update(OrderDto dto)
 	{
 		try {
-			pstmt = conn.prepareStatement("update tbl_order set odr_amount = ? , price = ? where  order_id =?");
-			pstmt.setInt(1, dto.getOdr_amount());
-			pstmt.setInt(2, dto.getPrice());
-			pstmt.setString(3, dto.getOrder_id());
+			pstmt = conn.prepareStatement("update tbl_order set member_id = ?, odr_amount = ? , price = ? where  order_id =?");
+			pstmt.setString(1, dto.getMember_id());
+			pstmt.setInt(2, dto.getOdr_amount());
+			pstmt.setInt(3, dto.getPrice());
+			pstmt.setString(4, dto.getOrder_id());
 			int result = pstmt.executeUpdate();
 			pstmt.close();
 			return result;
@@ -106,6 +117,8 @@ public class OrderDao {
 		}
 		return 0;
 	}
+	
+
 	
 	public int delete(String id)
 	{

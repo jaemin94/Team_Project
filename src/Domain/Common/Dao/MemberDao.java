@@ -44,12 +44,12 @@ public class MemberDao {
 		try
 		{
 			
-			pstmt = conn.prepareStatement("insert into tbl_member values(?,?,?,null,?)");
+			pstmt = conn.prepareStatement("insert into tbl_member values(?,?,?,?,?)");
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPw());
 			pstmt.setString(3, dto.getName());
-//			pstmt.setString(4, dto.getAdr_addr());
-			pstmt.setString(4, dto.getRole());
+			pstmt.setString(4, dto.getAdr_addr());
+			pstmt.setString(5, dto.getRole());
 			int result = pstmt.executeUpdate();
 			pstmt.close();
 			return result;
@@ -130,13 +130,13 @@ public class MemberDao {
 	}
 
 	public int update(MemberDto dto) {
-	    String address = getAddressFromTblAddr(dto.getAdr_addr());
+	    
 	    try {
 	        pstmt = conn.prepareStatement("update tbl_member set pw = ?, name = ?, adr_addr = ?, role = ? where member_id = ?");
 	        
 	        pstmt.setString(1, dto.getPw());
 	        pstmt.setString(2, dto.getName());
-	        pstmt.setString(3, address); // 조회한 주소를 적용
+	        pstmt.setString(3, dto.getAdr_addr());
 	        pstmt.setString(4, dto.getRole());
 	        pstmt.setString(5, dto.getId());
 	        
@@ -149,22 +149,7 @@ public class MemberDao {
 	    return 0;
 	}
 
-	public String getAddressFromTblAddr(String adrAddr) {
-	    String address = null;
-	    try {
-	        pstmt = conn.prepareStatement("SELECT adr_addr FROM tbl_addr WHERE adr_addr = ?");
-	        pstmt.setString(1, adrAddr);
-	        ResultSet rs = pstmt.executeQuery();
-	        if (rs.next()) {
-	            address = rs.getString("adr_addr");
-	        }
-	        rs.close();
-	        pstmt.close();
-	    } catch (SQLException ex) {
-	        ex.printStackTrace();
-	    }
-	    return address;
-	}
+
 
 	public int delete(String id)
 	{

@@ -17,7 +17,15 @@ public class OrderDto {
 	{
 		
 	}
-
+	
+	public OrderDto(String member_id, int odr_amount, int price, String order_id)
+	{
+		this.member_id = member_id;
+		this.odr_amount = odr_amount;
+		this.price = price;
+		this.order_id = order_id;
+	}
+	
 	public OrderDto(String order_id, String member_id, int product_code, String product_name, String adr_addr,
 			int odr_amount, Date odr_date, int price) 
 	{
