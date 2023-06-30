@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Domain.Common.Dto.AddrDto;
 import Domain.Common.Dto.MemberDto;
 
 public class MemberDao {
@@ -67,17 +69,18 @@ public class MemberDao {
 		
 		try
 		{
-			pstmt = conn.prepareStatement("select * from tbl_book");
+			pstmt = conn.prepareStatement("select * from tbl_member");
 			rs = pstmt.executeQuery();
 			if(rs != null)
 			{
 				while(rs.next())
 				{
 					dto = new MemberDto();
-					dto.setBookcode(rs.getInt("book_code"));
-					dto.setBookname(rs.getString("book_name"));
-					dto.setPublisher(rs.getString("publisher"));
-					dto.setIsbn(rs.getString("isbn"));
+					dto.setId(rs.getString("member_id"));
+					dto.setPw(rs.getString("pw"));
+					dto.setName(rs.getString("name"));
+					dto.setAdr_addr(rs.getString("adr_addr"));
+					dto.setRole(rs.getString("role"));
 					list.add(dto);
 					
 				}
@@ -95,24 +98,25 @@ public class MemberDao {
 		return list;
 	}
 	
-	public MemberDto select(int bookcode)
+	public MemberDto select(String id)
 	{
 		
 		MemberDto dto = null;
 		
 		try
 		{
-			pstmt = conn.prepareStatement("select * from tbl_book where book_code=?");
-			pstmt.setInt(1, bookcode);
+			pstmt = conn.prepareStatement("select * from tbl_member where member_id=?");
+			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs != null)
 			{
 				rs.next();				
 				dto = new MemberDto();
-				dto.setBookcode(rs.getInt("book_code"));
-				dto.setBookname(rs.getString("book_name"));
-				dto.setPublisher(rs.getString("publisher"));
-				dto.setIsbn(rs.getString("isbn"));	
+				dto.setId(rs.getString("member_id"));
+				dto.setPw(rs.getString("pw"));
+				dto.setName(rs.getString("name"));
+				dto.setAdr_addr(rs.getString("adr_addr"));
+				dto.setRole(rs.getString("role"));	
 				
 			}
 			rs.close();
@@ -124,45 +128,50 @@ public class MemberDao {
 		}
 		return dto;
 	}
-	
-	public List<MemberDto> select(String keyword)
-	{
-		return null;
-	}
-	
-	public List<MemberDto> select(String keyfield, String keyword)
-	{
-		return null;
+
+	public int update(MemberDto dto) {
+	    String address = getAddressFromTblAddr(dto.getAdr_addr());
+	    try {
+	        pstmt = conn.prepareStatement("update tbl_member set pw = ?, name = ?, adr_addr = ?, role = ? where member_id = ?");
+	        
+	        pstmt.setString(1, dto.getPw());
+	        pstmt.setString(2, dto.getName());
+	        pstmt.setString(3, address); // 조회한 주소를 적용
+	        pstmt.setString(4, dto.getRole());
+	        pstmt.setString(5, dto.getId());
+	        
+	        int result = pstmt.executeUpdate();
+	        pstmt.close();
+	        return result;
+	    } catch (Exception ex) {
+	        ex.printStackTrace();
+	    }
+	    return 0;
 	}
 
-	public int update(MemberDto dto)
-	{
-		try
-		{
-			pstmt = conn.prepareStatement("update tbl_book set book_name= ?,publisher=? ,isbn = ?where book_code =?");
-			
-			pstmt.setString(1, dto.getBookname());
-			pstmt.setString(2, dto.getPublisher());
-			pstmt.setString(3, dto.getIsbn());
-			pstmt.setInt(4, dto.getBookcode());
-			
-			int result = pstmt.executeUpdate();	 
-			pstmt.close();
-			return result;	 
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
-		return 0;	
+	public String getAddressFromTblAddr(String adrAddr) {
+	    String address = null;
+	    try {
+	        pstmt = conn.prepareStatement("SELECT adr_addr FROM tbl_addr WHERE adr_addr = ?");
+	        pstmt.setString(1, adrAddr);
+	        ResultSet rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            address = rs.getString("adr_addr");
+	        }
+	        rs.close();
+	        pstmt.close();
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
+	    return address;
 	}
-	
-	public int delete(int bookcode)
+
+	public int delete(String id)
 	{
 		try
 		{
-			pstmt = conn.prepareStatement("delete from tbl_book where book_code =?");
-			pstmt.setInt(1, bookcode);
+			pstmt = conn.prepareStatement("delete from tbl_member where member_id =?");
+			pstmt.setString(1, id);
 			
 			int result = pstmt.executeUpdate();	 
 			pstmt.close();

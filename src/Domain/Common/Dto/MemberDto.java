@@ -22,6 +22,7 @@ public class MemberDto {
 		this.role = role;
 	}
 
+
 	public String getId() {
 		return id;
 	}
