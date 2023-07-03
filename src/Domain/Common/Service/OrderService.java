@@ -40,7 +40,7 @@ public class OrderService {
 	// 주문 가능한지
 	// MemberDao를 참고하여 회원 아이디와 주소 , ProdDao 를 참고하여 prodcut_code를 주문 테이블에 넣는 작업
 	public boolean reqOrder(String sid, String id,int product_code,String order_id,
-							String member_id,String product_name,String adr_addr,int odr_amount,int price)
+							String member_id,String product_name,String adr_addr,int odr_amount,int price) throws Exception
 	{
 		// 사서 로그인 확인, Role 받기
 				String role = memberService.getRole(sid);
@@ -77,7 +77,7 @@ public class OrderService {
 				return false;
 			}
 		
-	}
+	
 	
 	// 모드 주문확인
 	public List<OrderDto> getAllOrder(OrderDto dto)

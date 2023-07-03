@@ -80,6 +80,8 @@ public class OrderController {
 	String member_id = (String) param.get("member_id");
 	Integer product_code = (Integer) param.get("product_code");
 	String product_name = (String) param.get("product_name");
+	String adr_addr = (String) param.get("adr_addr");
+	
 	Integer odr_amount = (Integer) param.get("odr_amount");
 	Integer price = (Integer) param.get("price");
 	String sid=(String) param.get("sid");
@@ -95,7 +97,14 @@ public class OrderController {
 			System.out.println("Dto : " + dto);
 } else if (serviceNo == 4) {
 	// 1 파라미터 추출
+	String order_id = (String) param.get("order_id");
 	String member_id = (String) param.get("member_id");
+	Integer product_code = (Integer) param.get("product_code");
+	String product_name = (String) param.get("product_name");
+	String adr_addr = (String) param.get("adr_addr");
+	
+	Integer odr_amount = (Integer) param.get("odr_amount");
+	Integer price = (Integer) param.get("price");
 	String sid=(String) param.get("sid");
 	
 	// 2 입력값 검증

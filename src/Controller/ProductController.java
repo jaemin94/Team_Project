@@ -10,21 +10,14 @@ import Domain.Common.Service.ProductService;
 
 
 public class ProductController {
-<<<<<<< HEAD
-//	private ProductService service;
-//	public ProductController() {
-//		service = ProductService.getInstance();
-//	}
-	
-	
-=======
+
 	
 	private ProductService service;
 	
 	public ProductController() {
 		service = ProductService.getInstance();
 	}
->>>>>>> 40c3b224697e0f81fc4008239593332a0456de1f
+
 	public Map<String,Object> execute (int serviceNo, Map<String,Object>param){
 		
 		if(serviceNo==1) {
