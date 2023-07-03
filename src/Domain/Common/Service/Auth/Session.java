@@ -12,7 +12,7 @@ public class Session {
 		
 	}
 	
-	Session(String sid, String id, String role, String addr)
+	public Session(String sid, String id, String role, String addr)
 	{
 		this.sid = sid;
 		this.id = id;
