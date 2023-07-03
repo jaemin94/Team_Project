@@ -47,7 +47,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement("insert into tbl_member values(?,?,?,?,?)");
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPw());
-			pstmt.setString(3, dto.getName());
+			pstmt.setString(3, dto.getusername());
 			pstmt.setString(4, dto.getAdr_addr());
 			pstmt.setString(5, dto.getRole());
 			int result = pstmt.executeUpdate();
@@ -78,7 +78,7 @@ public class MemberDao {
 					dto = new MemberDto();
 					dto.setId(rs.getString("member_id"));
 					dto.setPw(rs.getString("pw"));
-					dto.setName(rs.getString("name"));
+					dto.setusername(rs.getString("name"));
 					dto.setAdr_addr(rs.getString("adr_addr"));
 					dto.setRole(rs.getString("role"));
 					list.add(dto);
@@ -114,7 +114,7 @@ public class MemberDao {
 				dto = new MemberDto();
 				dto.setId(rs.getString("member_id"));
 				dto.setPw(rs.getString("pw"));
-				dto.setName(rs.getString("name"));
+				dto.setusername(rs.getString("name"));
 				dto.setAdr_addr(rs.getString("adr_addr"));
 				dto.setRole(rs.getString("role"));	
 				
@@ -135,7 +135,7 @@ public class MemberDao {
 	        pstmt = conn.prepareStatement("update tbl_member set pw = ?, name = ?, adr_addr = ?, role = ? where member_id = ?");
 	        
 	        pstmt.setString(1, dto.getPw());
-	        pstmt.setString(2, dto.getName());
+	        pstmt.setString(2, dto.getusername());
 	        pstmt.setString(3, dto.getAdr_addr());
 	        pstmt.setString(4, dto.getRole());
 	        pstmt.setString(5, dto.getId());

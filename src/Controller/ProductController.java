@@ -1,4 +1,9 @@
+package Controller;
+
+import java.util.HashMap;
 import java.util.Map;
+
+import Domain.Common.Service.ProductService;
 
 //
 //ProdService
@@ -30,6 +35,8 @@ public class ProductController {
 	public ProductController() {
 		service = ProductService.getInstance();
 	}
+	
+	
 	public Map<String,Object> execute (int serviceNo, Map<String,Object>param){
 		if(serviceNo==1) {
 			String sid = (String)param.get("sid");
@@ -75,7 +82,7 @@ public class ProductController {
 			result.put("result", rValue);
 			return result;
 			
-		}else if(serviceNo==4)
+		}else if(serviceNo==4) {
 			String sid= (String)param.get("sid");
 			Integer product_code = (Integer)param.get("product_code");
 			if(sid==null||product_code==null) {
@@ -88,5 +95,7 @@ public class ProductController {
 			result.put("result", rValue);
 			return result;
 	}
+
 	return null;
+}
 }
