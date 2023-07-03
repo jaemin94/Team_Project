@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Domain.Common.Dto.AddrDto;
+
 import Domain.Common.Dto.OrderDto;
 import Domain.Common.Dto.ProdDto;
 
@@ -23,6 +23,16 @@ public class ProdDao {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
+	
+	private static ProdDao instance;
+	public static ProdDao getInstance()
+	{
+		if(instance == null)
+			instance = new ProdDao();
+		
+		return instance;
+		
+	}
 	
 	public ProdDao()
 	{
