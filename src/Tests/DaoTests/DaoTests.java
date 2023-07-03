@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import Domain.Common.Dao.MemberDao;
 import Domain.Common.Dao.OrderDao;
-import Domain.Common.Dto.AddrDto;
+
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
 

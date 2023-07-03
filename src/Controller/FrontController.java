@@ -12,12 +12,17 @@ public class FrontController {
 	// 초기값 설정
 	private void init()
 	{
+		// 주문 정보 요구 사항 - > 컨트롤러 맵핑
 		map.put("/order",new OrderController());
+		
+		// 회원 정보 요구 사항 - > 컨트롤러 맵핑
 		map.put("/member",new MemberController());
+		
+		// 상품 정보 요구 사항 - > 컨트롤러 맵핑
 		map.put("/product",new ProductController());
 	}
 	
-	FrontController()
+	public FrontController()
 	{
 		init();
 	}

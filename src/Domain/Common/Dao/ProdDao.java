@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Domain.Common.Dto.AddrDto;
+
 import Domain.Common.Dto.OrderDto;
 import Domain.Common.Dto.ProdDto;
 
@@ -23,6 +23,16 @@ public class ProdDao {
 	private Connection conn;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
+	
+	private static ProdDao instance;
+	public static ProdDao getInstance()
+	{
+		if(instance == null)
+			instance = new ProdDao();
+		
+		return instance;
+		
+	}
 	
 	public ProdDao()
 	{
@@ -67,6 +77,24 @@ public class ProdDao {
 			e.printStackTrace();
 		}
 		return list;	
+	}
+	
+	public ProdDto select(int product_code)throws Exception{
+		
+		ProdDto dto = null;
+		pstmt = conn.prepareStatement("select * from tbl_product where product_code = ?");
+		pstmt.setInt(1, product_code);
+		rs=pstmt.executeQuery();
+		if(rs!=null) {
+			rs.next();
+			dto=new ProdDto();
+			dto.setProduct_code(rs.getInt("product_code"));
+			dto.setProduct_name(rs.getString("product_name"));
+			dto.setAmount(rs.getInt("amount"));
+		}
+		rs.close();
+		pstmt.close();
+		return dto;
 	}
 	
 	public int insert(ProdDto dto)
