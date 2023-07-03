@@ -22,7 +22,7 @@ public class FrontController {
 		map.put("/product",new ProductController());
 	}
 	
-	FrontController()
+	public FrontController()
 	{
 		init();
 	}

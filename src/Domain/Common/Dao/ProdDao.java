@@ -24,6 +24,13 @@ public class ProdDao {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
+	private static ProdDao instance;
+	public static ProdDao getInstance() {
+		if(instance==null)
+			instance=new ProdDao();
+		return instance;
+	}
+	
 	public ProdDao()
 	{
 		id = "root";

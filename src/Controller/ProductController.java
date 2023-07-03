@@ -31,10 +31,10 @@ import Domain.Common.Service.ProductService;
 
 
 public class ProductController {
-	private ProductService service;
-	public ProductController() {
-		service = ProductService.getInstance();
-	}
+//	private ProductService service;
+//	public ProductController() {
+//		service = ProductService.getInstance();
+//	}
 	
 	
 	public Map<String,Object> execute (int serviceNo, Map<String,Object>param){

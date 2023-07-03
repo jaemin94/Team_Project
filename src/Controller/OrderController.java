@@ -9,17 +9,17 @@ public class OrderController {
 
 	OrderService service;
 	
-	public OrderController(){
-		service = OrderService.getInstance();
-//	private String order_id;
-//	private String member_id;
-//	private int product_code;
-//	private String product_name;
-//	private String adr_addr;
-//	private int odr_amount;
-//	private Date odr_date;
-//	private int price;
-	}
+//	public OrderController(){
+//		service = OrderService.getInstance();
+////	private String order_id;
+////	private String member_id;
+////	private int product_code;
+////	private String product_name;
+////	private String adr_addr;
+////	private int odr_amount;
+////	private Date odr_date;
+////	private int price;
+//	}
 	
 	// 1 Select , 2 Insert , 3 Update , 4 Delete
 	public Map<String,Object> execute (int serviceNo,Map<String,Object> param){
