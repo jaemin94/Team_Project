@@ -21,6 +21,13 @@ public class MemberDao {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	
+	private static MemberDao instance;
+	public static MemberDao getInstance() {
+		if(instance==null)
+			instance=new MemberDao();
+		return instance;
+	}
+	
 	public MemberDao()
 	{
 		id = "root";
