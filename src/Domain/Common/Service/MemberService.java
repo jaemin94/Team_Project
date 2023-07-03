@@ -39,7 +39,7 @@ public class MemberService {
 		return false;
 	}
 	
-	//회원 조회하기(전체) - 사서
+	//회원 조회하기(전체)
 	public List<MemberDto> memberSearch(String sid) throws Exception{
 		
 		String role = this.getRole(sid);
@@ -48,7 +48,7 @@ public class MemberService {
 			return dao.select();
 		return null;
 	}
-	//회원 조회하기(한명) - 사서
+	//회원 조회하기(한명)
 	public MemberDto memberSearchOne(String role,String id) throws Exception{
 		if(role.equals("ROLE_MEMBER"))		
 			return dao.select(id);
