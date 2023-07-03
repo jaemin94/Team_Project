@@ -4,7 +4,7 @@ public class MemberDto {
 
 	private String id;
 	private String pw;
-	private String name;
+	private String username;
 	private String adr_addr;
 	private String role;
 	
@@ -13,11 +13,11 @@ public class MemberDto {
 		
 	}
 
-	public MemberDto(String id, String pw, String name, String adr_addr, String role)
+	public MemberDto(String id, String pw, String username, String adr_addr, String role)
 	{
 		this.id = id;
 		this.pw = pw;
-		this.name = name;
+		this.username = username;
 		this.adr_addr = adr_addr;
 		this.role = role;
 	}
@@ -39,12 +39,12 @@ public class MemberDto {
 		this.pw = pw;
 	}
 
-	public String getName() {
-		return name;
+	public String getusername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setusername(String username) {
+		this.username = username;
 	}
 
 	public String getAdr_addr() {
@@ -66,7 +66,7 @@ public class MemberDto {
 	}
 
 	public String toString() {
-		return "MemberDto [id=" + id + ", pw=" + pw + ", name=" + name + ", adr_addr=" + adr_addr + ", role= " + role + "]";
+		return "MemberDto [id=" + id + ", pw=" + pw + ", username=" + username + ", adr_addr=" + adr_addr + ", role= " + role + "]";
 	}
 	
 	
