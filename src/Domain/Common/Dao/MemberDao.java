@@ -49,7 +49,7 @@ public class MemberDao {
 	public int insert(MemberDto dto)
 	{
 		try
-		{
+		{  
 			
 			pstmt = conn.prepareStatement("insert into tbl_member values(?,?,?,?,?)");
 			pstmt.setString(1, dto.getId());
@@ -86,7 +86,7 @@ public class MemberDao {
 					dto.setId(rs.getString("member_id"));
 					dto.setPw(rs.getString("pw"));
 					dto.setusername(rs.getString("name"));
-					dto.setAdr_addr(rs.getString("adr_addr"));
+					dto.setAdr_addr(rs.getString("addr"));
 					dto.setRole(rs.getString("role"));
 					list.add(dto);
 					

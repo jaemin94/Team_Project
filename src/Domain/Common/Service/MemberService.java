@@ -44,8 +44,12 @@ public class MemberService {
 	
 	//회원 조회하기(전체)
 	public List<MemberDto> memberSearch(String sid) throws Exception{
+
+		System.out.println("Flag!! MemberService48: " + sid);
 		
 		String role = this.getRole(sid);
+		
+		System.out.println("Flag!! MemeberService52: " + role);
 		
 		if(role.equals("ROLE_MEMBER"))		
 			return dao.select();
@@ -117,13 +121,13 @@ public class MemberService {
 		//2 사용자에대한 정보(Session)을 MemberService에 저장
 		String sid=UUID.randomUUID().toString();
 		
-		System.out.println("Flag!! MemberService118: " + sid);
-		tmp = sid;
-		
+//		System.out.println("Flag!! MemberService118: " + sid);
+//		tmp = sid;
+//		
 		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
 		sessionMap.put(sid, session);
 		
-		System.out.println("Flag!! getRole: " + dbDto.getRole());
+		System.out.println("Flag!! MemberService126: " + sessionMap.get(sid));
 		
 		//3 세션에 대한정보를 클라이언트가 접근할수 있도록하는 세션구별Id(Session Cookie) 전달
 		Map<String,Object> result = new HashMap();
@@ -140,34 +144,41 @@ public class MemberService {
 	}
 	
 	//역할반환함수 
-<<<<<<< HEAD
 	public String getRole(String sid) {
-//		Session session = sessionMap.get(sid);
-		Session session = sessionMap.get(tmp);
+		
+		System.out.println("Flag!! MemberService149: " + sid);
+		System.out.println("Flag!! MemberService150: " + sessionMap.get(sid));
+		Session session = sessionMap.get(sid);
+//		Session session = sessionMap.get(tmp);
 		System.out.println("getRole's Session : " + session);
 		if(session!=null) {
 			return session.getRole();
 			}
 		
 		return null;
-=======
-	public String getRole(Map<String, Object> login_sid, String id) {
-		MemberDto dbDto = dao.select(id);
-		String sid=UUID.randomUUID().toString();
-		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
-		sessionMap.put(sid, session);
-		System.out.println("getRole's Session : " + session);
-		return session.getRole();
 	}
+	
+	public Map<String, Session> getSession(){
+		return sessionMap;
+	}
+	
+//	public String getRole(Map<String, Object> login_sid, String id) {
+//		MemberDto dbDto = dao.select(id);
+//		String sid=UUID.randomUUID().toString();
+//		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
+//		sessionMap.put(sid, session);
+//		System.out.println("getRole's Session : " + session);
+//		return session.getRole();
+//	}
 	//역할반환함수 
-	public String getRole(String id) {
-		MemberDto dbDto = dao.select(id);
-		String sid=UUID.randomUUID().toString();
-		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
-		sessionMap.put(sid, session);
-		System.out.println("getRole's Session : " + session);
-		return session.getRole();
->>>>>>> 953a52a84c9cc95fa48514453a73fc341ff078a3
-	}
+//	public String getRole(String id) {
+//		MemberDto dbDto = dao.select(id);
+//		String sid=UUID.randomUUID().toString();
+//		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
+//		sessionMap.put(sid, session);
+////		System.out.println("getRole's Session : " + session);
+//		if(session!=null) return session.getRole();
+//		return null;
+//	}
 	
 }

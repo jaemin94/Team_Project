@@ -6,6 +6,7 @@ import java.util.Map;
 
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Service.MemberService;
+import Domain.Common.Service.Auth.Session;
 
 public class MemberController {
 
@@ -42,6 +43,9 @@ public class MemberController {
 
 		} else if (serviceNo == 2) {
 			// 1 파라미터 추출
+			
+			service.getSession();
+			
 			String id = (String) param.get("id");
 			String pw = (String) param.get("pw");
 			String username = (String) param.get("username");
