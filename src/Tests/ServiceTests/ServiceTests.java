@@ -23,7 +23,7 @@ public class ServiceTests {
 	    System.out.println("sid: " + login_sid);
 	    
 	    // 주문 요청 테스트
-	    boolean isOrderSuccessful = service.reqOrder2("member1", "user1",3, 100);
+	    boolean isOrderSuccessful = service.reqOrder2("member1", "user1",3, 5);
 	    System.out.println("주문 성공 여부: " + isOrderSuccessful);
 	}
 //	

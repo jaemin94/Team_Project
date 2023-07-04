@@ -52,9 +52,12 @@ public class ProdDto {
 		this.amount = amount;
 	}
 
+
 	public String toString() {
-		return "ProdDto [product_code=" + product_code + ", product_name=" + product_name + ", amount=" + amount + "]";
+		return "ProdDto [product_code=" + product_code + ", product_name=" + product_name + ", amount=" + amount
+				+ ", prod_price=" + prod_price + "]";
 	}
+
 	
 	
 	
