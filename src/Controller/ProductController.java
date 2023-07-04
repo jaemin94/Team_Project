@@ -60,13 +60,14 @@ public class ProductController {
 			Integer product_code = (Integer)param.get("product_code");
 			String product_name = (String)param.get("product_name");
 			Integer amount = (Integer)param.get("amount");
+			Integer prod_price = (Integer)param.get("prod_price");
 			
 			if(product_code==null||product_name == null || amount ==null) {
 				System.out.println("[ERROR] Data Validation Check Error");
 				return null;
 			}
 			
-			ProdDto dto = new ProdDto(product_code,product_name,amount);
+			ProdDto dto = new ProdDto(product_code,product_name,amount,prod_price);
 			
 			Boolean rValue = false;
 			try {
@@ -86,6 +87,7 @@ public class ProductController {
 			Integer product_code = (Integer)param.get("product_code");
 			String product_name = (String)param.get("product_name");
 			Integer amount = (Integer)param.get("amount");
+			Integer prod_price = (Integer)param.get("prod_price");
 			
 			
 			if(product_code==null||product_name==null||amount==null) {
@@ -93,7 +95,7 @@ public class ProductController {
 				return null;
 			}
 			
-			ProdDto dto = new ProdDto(product_code,product_name,amount);
+			ProdDto dto = new ProdDto(product_code,product_name,amount,prod_price);
 			
 			Boolean rValue=false;
 			try {

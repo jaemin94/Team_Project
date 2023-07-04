@@ -62,6 +62,16 @@ public class ProductService {
 		}
 		return false;
 	}
+	public boolean updateProdAmount(int product_code, ProdDto dto) throws Exception {
+		System.out.println("Product Services's updateProd()");
+		
+		
+			int result = dao.update(dto);
+			if(result>0)
+				return true;
+		
+		return false;
+	}
 	
 	//+romoveProd(String sid, int product_code) : boolean
 	public boolean removeProd(String sid, int product_code) throws Exception{
@@ -92,5 +102,6 @@ public class ProductService {
 		
 		return amount;
 	}
+	
 	
 }

@@ -1,8 +1,7 @@
 package Domain.Common.Service;
 
 import java.util.List;
-import java.util.Map;
-
+import java.util.UUID;
 
 import Domain.Common.Dao.MemberDao;
 import Domain.Common.Dao.OrderDao;
@@ -98,7 +97,7 @@ public class OrderService {
 				if (pdto != null) {
 					//pDao.UpdateAmount();
 					// 주문완료		
-					oDao.insert(new OrderDto("1",mdto.getId(),pdto.getProduct_code(),"청바지",mdto.getAdr_addr(),odr_amount,null,100));		
+					oDao.insert(new OrderDto("16",mdto.getId(),pdto.getProduct_code(),"청바지",mdto.getAdr_addr(),odr_amount,null,100));		
 					System.out.println("[INFO] 주문완료");
 					return false;
 				}
@@ -110,6 +109,48 @@ public class OrderService {
 		}
 		
 		//==================================피드백
+		
+		public boolean reqOrder2(String sid, String id,int product_code, int odr_amount) throws Exception {
+			MemberDto mdto = new MemberDto();
+			ProdDto pdto = new ProdDto();
+			OrderDto odto = new OrderDto();
+			
+			String role = memberService.getRole(sid);
+			if (!role.equals("Role_Member")) {
+			      System.out.println("[WARN] 관리자만 로그인 할 수 있습니다.");
+			      return false;
+			}
+			
+		    mdto = memberService.memberSearchOne("Role_user", id);
+		    if (mdto != null) {
+		    	pdto = productService.reqProd(product_code); 
+		        if (pdto != null) {
+		            int currentStock = pdto.getAmount();
+		            if (currentStock >= odr_amount) {
+		                int updatedStock = currentStock - odr_amount;
+		                pdto.setAmount(updatedStock);
+		                productService.updateProdAmount(product_code, pdto);
+		                int pp = odr_amount * pdto.getProd_price();
+		                
+		                odto.setOrder_id(UUID.randomUUID().toString()); // 주문 ID 설정
+		                odto.setProduct_code(product_code);
+		                
+		                oDao.insert(new OrderDto("15d0",mdto.getId(),pdto.getProduct_code(),pdto.getProduct_name(),mdto.getAdr_addr(),odr_amount,null,pp));
+		                System.out.println("[INFO] 주문완료");
+		                return true;
+		            } else {
+		                System.out.println("[INFO] 주문 수량이 재고보다 많습니다.");
+		                return false;
+		            }
+		        } else {
+		            System.out.println("[INFO] 해당 상품이 존재하지 않습니다.");
+		            return false;
+		        }
+		    } else {
+		        System.out.println("[INFO] 해당 회원이 존재하지 않습니다.");
+		        return false;
+		    }
+		}
 	
 	
 	// 모드 주문확인
