@@ -86,11 +86,13 @@ public class ProdDao {
 		pstmt.setInt(1, product_code);
 		rs=pstmt.executeQuery();
 		if(rs!=null) {
-			rs.next();
+			while(rs.next()) {
 			dto=new ProdDto();
 			dto.setProduct_code(rs.getInt("product_code"));
 			dto.setProduct_name(rs.getString("product_name"));
 			dto.setAmount(rs.getInt("amount"));
+			
+			}
 		}
 		rs.close();
 		pstmt.close();
