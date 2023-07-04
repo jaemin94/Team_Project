@@ -1,6 +1,7 @@
 package Domain.Common.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import Domain.Common.Dao.ProdDao;
 import Domain.Common.Dto.ProdDto;
@@ -39,7 +40,7 @@ public class ProductService {
 	}
 	
 	//+ addProd(String sid, int product_code, String product_name): boolean
-	public boolean addProd(String sid, ProdDto dto) throws Exception{
+	public boolean addProd(Map<String, Object> sid, ProdDto dto) throws Exception{
 		System.out.println("ProdService's addProd()");
 		String role = memberService.getRole(sid);
 		if(role.equals("ROLE_MEMBER")) {
@@ -51,7 +52,7 @@ public class ProductService {
 	}
 	
 	//+updateProd(String sid, int prodcuct_code) : boolean
-	public boolean updateProd(String sid, ProdDto dto) throws Exception {
+	public boolean updateProd(Map<String, Object> sid, ProdDto dto) throws Exception {
 		System.out.println("Product Services's updateProd()");
 		String role = memberService.getRole(sid);
 		if(role.equals("ROLE_MEMBER")) {
@@ -63,7 +64,7 @@ public class ProductService {
 	}
 	
 	//+romoveProd(String sid, int product_code) : boolean
-	public boolean removeProd(String sid, int product_code) throws Exception{
+	public boolean removeProd(Map<String, Object> sid, int product_code) throws Exception{
 		System.out.println("ProductService's removeProd()");
 		String role = memberService.getRole(sid);
 		if(role.equals("ROLE_MEMBER")) {

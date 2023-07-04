@@ -1,11 +1,14 @@
 package Domain.Common.Service.Auth;
 
+import java.util.Map;
+
 public class Session {
 
 	private String sid;
 	private String id;
 	private String role;
 	private String addr;
+	Map<String, Object> login_sid;
 	
 	Session()
 	{
@@ -18,6 +21,10 @@ public class Session {
 		this.id = id;
 		this.role = role;
 		this.addr = addr;
+	}
+
+	public Session(Map<String, Object> login_sid) {
+		this.login_sid = login_sid;
 	}
 
 	public String getSid() {

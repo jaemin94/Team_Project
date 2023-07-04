@@ -22,7 +22,7 @@ public class MemberController {
 
 		if (serviceNo == 1) {
 			// 1 파라미터 추출(생략)
-			String sid = (String) param.get("sid");
+			Map<String, Object> sid = (Map<String, Object>) param.get("sid");
 			// 2 입력값 검증(생략)
 
 			// 3 서비스 실행(서비스모듈작업 이후 처리)

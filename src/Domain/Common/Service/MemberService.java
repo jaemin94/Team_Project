@@ -29,7 +29,7 @@ public class MemberService {
 	}
 	//
 	
-	private MemberService() {
+	public MemberService() {
 		dao=MemberDao.getInstance();
 		sessionMap=new HashMap();
 	}
@@ -43,7 +43,7 @@ public class MemberService {
 	}
 	
 	//회원 조회하기(전체) - 사서
-	public List<MemberDto> memberSearch(String sid) throws Exception{
+	public List<MemberDto> memberSearch(Map<String, Object> sid) throws Exception{
 		
 		String role = this.getRole(sid);
 		
@@ -53,7 +53,7 @@ public class MemberService {
 	}
 	//회원 조회하기(한명) - 사서
 	public MemberDto memberSearchOne(String role,String id) throws Exception{
-		if(role.equals("ROLE_MEMBER"))		
+		if(role.equals("Role_user"))		
 			return dao.select(id);
 		return null;
 	}	
@@ -131,8 +131,8 @@ public class MemberService {
 	}
 	
 	//역할반환함수 
-	public String getRole(String sid) {
-		Session session = sessionMap.get(sid);
+	public String getRole(Map<String, Object> login_sid) {
+		Session session = sessionMap.get(login_sid);
 		System.out.println("getRole's Session : " + session);
 		if(session!=null)
 			return session.getRole();

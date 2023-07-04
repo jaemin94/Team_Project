@@ -56,7 +56,7 @@ public class ProductController {
 			
 			
 		}else if(serviceNo==3) {
-			String sid = (String)param.get("sid");
+			Map<String, Object> sid = (Map<String, Object>)param.get("sid");
 			Integer product_code = (Integer)param.get("product_code");
 			String product_name = (String)param.get("product_name");
 			Integer amount = (Integer)param.get("amount");
@@ -82,7 +82,7 @@ public class ProductController {
 			return result;
 		
 		}else if(serviceNo==4) {
-			String sid = (String)param.get("sid");
+			Map<String, Object> sid = (Map<String, Object>)param.get("sid");
 			Integer product_code = (Integer)param.get("product_code");
 			String product_name = (String)param.get("product_name");
 			Integer amount = (Integer)param.get("amount");
@@ -109,7 +109,7 @@ public class ProductController {
 			return result;
 			
 		}else if(serviceNo==5) {
-			String sid= (String)param.get("sid");
+			Map<String, Object> sid= (Map<String, Object>)param.get("sid");
 			Integer product_code = (Integer)param.get("product_code");
 			if(sid==null||product_code==null) {
 				System.out.println("[ERROR]Data Validation Check Error");
