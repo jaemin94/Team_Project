@@ -18,7 +18,7 @@ public class MemberService {
 	
 	private MemberDao dao;
 	
-	
+	String tmp;
 	
 	//싱글톤
 	private static MemberService instance;
@@ -29,7 +29,7 @@ public class MemberService {
 	}
 	//
 	
-	private MemberService() {
+	public MemberService() {
 		dao=MemberDao.getInstance();
 		sessionMap=new HashMap();
 	}
@@ -114,8 +114,14 @@ public class MemberService {
 		}
 		//2 사용자에대한 정보(Session)을 MemberService에 저장
 		String sid=UUID.randomUUID().toString();
+		
+		System.out.println("Flag!! MemberService118: " + sid);
+		tmp = sid;
+		
 		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
 		sessionMap.put(sid, session);
+		
+		System.out.println("Flag!! getRole: " + dbDto.getRole());
 		
 		//3 세션에 대한정보를 클라이언트가 접근할수 있도록하는 세션구별Id(Session Cookie) 전달
 		Map<String,Object> result = new HashMap();
@@ -132,10 +138,12 @@ public class MemberService {
 	
 	//역할반환함수 
 	public String getRole(String sid) {
-		Session session = sessionMap.get(sid);
+//		Session session = sessionMap.get(sid);
+		Session session = sessionMap.get(tmp);
 		System.out.println("getRole's Session : " + session);
-		if(session!=null)
+		if(session!=null) {
 			return session.getRole();
+			}
 		
 		return null;
 	}

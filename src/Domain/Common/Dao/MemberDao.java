@@ -110,21 +110,23 @@ public class MemberDao {
 		
 		MemberDto dto = null;
 		
+		
 		try
 		{
 			pstmt = conn.prepareStatement("select * from tbl_member where member_id=?");
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
+
 			if(rs != null)
 			{
-				rs.next();				
+				rs.next();
 				dto = new MemberDto();
 				dto.setId(rs.getString("member_id"));
 				dto.setPw(rs.getString("pw"));
 				dto.setusername(rs.getString("name"));
-				dto.setAdr_addr(rs.getString("adr_addr"));
+				dto.setAdr_addr(rs.getString("addr"));
 				dto.setRole(rs.getString("role"));	
-				
+
 			}
 			rs.close();
 			pstmt.close();
@@ -133,6 +135,7 @@ public class MemberDao {
 		{
 			ex.printStackTrace();
 		}
+		
 		return dto;
 	}
 
