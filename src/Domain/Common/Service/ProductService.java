@@ -1,9 +1,9 @@
 package Domain.Common.Service;
 
 import java.util.List;
-import java.util.Map;
 
 import Domain.Common.Dao.ProdDao;
+import Domain.Common.Dto.OrderDto;
 import Domain.Common.Dto.ProdDto;
 
 public class ProductService {
@@ -73,6 +73,24 @@ public class ProductService {
 				return true;
 		}
 		return false;
+	}
+	
+	public int Prod_amount(int amount)
+	{
+		ProdDto pDto = new ProdDto();
+		OrderDto oDto = new OrderDto();
+		amount = 0;
+		
+		if(pDto.getAmount() > oDto.getOdr_amount())
+		{
+			amount = pDto.getAmount() -  oDto.getOdr_amount();
+		}
+		else
+		{
+			System.out.println("재고가 없습니다");
+		}
+		
+		return amount;
 	}
 	
 }
