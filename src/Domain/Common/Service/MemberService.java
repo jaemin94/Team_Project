@@ -134,14 +134,14 @@ public class MemberService {
 	}
 	
 	//역할반환함수 
-	public String getRole(Map<String, Object> login_sid, String id) {
-		MemberDto dbDto = dao.select(id);
-		String sid=UUID.randomUUID().toString();
-		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
-		sessionMap.put(sid, session);
-		System.out.println("getRole's Session : " + session);
-		return session.getRole();
-	}
+//	public String getRole(Map<String, Object> login_sid, String id) {
+//		MemberDto dbDto = dao.select(id);
+//		String sid=UUID.randomUUID().toString();
+//		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
+//		sessionMap.put(sid, session);
+//		System.out.println("getRole's Session : " + session);
+//		return session.getRole();
+//	}
 	//역할반환함수 
 	public String getRole(String id) {
 		MemberDto dbDto = dao.select(id);

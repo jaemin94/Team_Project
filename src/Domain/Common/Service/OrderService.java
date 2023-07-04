@@ -1,7 +1,6 @@
 package Domain.Common.Service;
 
 import java.util.List;
-import java.util.Map;
 
 import Domain.Common.Dao.MemberDao;
 import Domain.Common.Dao.OrderDao;
@@ -10,14 +9,18 @@ import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
 import Domain.Common.Dto.ProdDto;
 
-public class OrderService {
+public class OrderService<oDto> {
 	
+	private OrderDto oDto;
+	private ProdDto pDto;
 	private MemberService memberService;
 	private ProductService productService;
 	private OrderDao oDao;
 	private MemberDao mDao;
 	private ProdDao pDao;
 	private static OrderService instance;
+	
+	
 	
 	public OrderService getInstance()
 	{
@@ -78,12 +81,17 @@ public class OrderService {
 //				return false;
 //			}
 		
+	
+	
+	
+	
 	//==================================피드백
 		public boolean reqOrder(String id, int odr_amount) throws Exception {
 			
 			MemberDto mdto = new MemberDto();
 			ProdDto pdto = new ProdDto();
 			OrderDto odto = new OrderDto();
+			
 			
 			// 관리자 로그인 확인, Role 받기
 			String role = memberService.getRole(id);
@@ -149,6 +157,29 @@ public class OrderService {
 		return false;
 		
 	}
+	// 주문시 amount값 감소
+	public static void main(String[] args) {
+	    ProdDto pDto = new ProdDto();
+	    OrderDto oDto = new OrderDto();
+	    
+	    String result =  processOrder(pDto, oDto);
+	    System.out.println(result);
+	}
+	public static String processOrder(ProdDto prodDto, OrderDto orderDto) {
+	    int prodAmount = prodDto.getAmount();
+	    int odrAmount = orderDto.getOdr_amount();
+
+	    if (odrAmount > prodAmount) {
+	        System.out.println("주문량이 상품 수량을 초과했습니다. 주문을 처리할 수 없습니다.");
+	    } else {
+	        // 주문 처리 로직
+	    	   int remainingAmount = prodAmount - odrAmount;
+	           prodDto.setAmount(remainingAmount);
+	        System.out.println("주문이 성공적으로 완료되었습니다. 남은 상품 수량" + remainingAmount);
+	    }
+		return null;
+	}
+		
 	
 	// 주문정보 수정
 	public boolean updateOrder(OrderDto dto, String login_sid)
