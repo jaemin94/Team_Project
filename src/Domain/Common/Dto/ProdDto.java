@@ -22,6 +22,12 @@ public class ProdDto {
 
 
 
+
+
+	public int getProd_price() {
+		return prod_price;
+	}
+
 	public void setProd_price(int prod_price) {
 		this.prod_price = prod_price;
 	}
@@ -56,10 +62,6 @@ public class ProdDto {
 				+ ", prod_price=" + prod_price + "]";
 	}
 
-	public int getProd_price() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	
 	

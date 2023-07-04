@@ -33,11 +33,11 @@ public class ServiceTests {
 	    MemberService memberService = new MemberService();
 	    assertNotNull(service);
 	    
-	    Map<String, Object> login_sid = memberService.login("member9", "1234");
+	    Map<String, Object> login_sid = memberService.login("member1", "1234");
 	    
 	    System.out.println("sid: " + login_sid);
 	    
-	    boolean isOrderSuccessful = service.reqOrder("member9","user1",3, 4);
+	    boolean isOrderSuccessful = service.reqOrder("member1","user1",3, 4);
 	    System.out.println("주문 성공 여부: " + isOrderSuccessful);
 	}
 
@@ -63,11 +63,11 @@ public class ServiceTests {
 		MemberService memberService = new MemberService();
 
 		
-		Map<String, Object> login_sid = memberService.login("member9", "1234");
+		Map<String, Object> login_sid = memberService.login("member1", "1234");
 		
 		System.out.println("sid: " + login_sid);
 		
-		pService.addProd("member9",new ProdDto(3,"이것이 리눅스다",100));
+		pService.addProd("member1",new ProdDto(2,"청바지",100,500));
 		
 		
 	}

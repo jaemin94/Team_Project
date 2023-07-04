@@ -124,11 +124,14 @@ public class OrderDao {
 	public int insert(OrderDto dto)
 	{
 		try {
-			pstmt = conn.prepareStatement("insert into tbl_order values(?,null,null,?,null,?,curdate(),?)");
+			pstmt = conn.prepareStatement("insert into tbl_order values(?,?,?,?,?,?,curdate(),?)");
 			pstmt.setString(1, dto.getOrder_id());
-			pstmt.setString(2, dto.getProduct_name());
-			pstmt.setInt(3, dto.getPrice());
-			pstmt.setString(4, dto.getOrder_id());
+			pstmt.setString(2, dto.getMember_id());
+			pstmt.setInt(3, dto.getProduct_code());
+			pstmt.setString(4, dto.getProduct_name());
+			pstmt.setString(5, dto.getAdr_addr());
+			pstmt.setInt(6, dto.getOdr_amount());
+			pstmt.setInt(7, dto.getPrice());
 			int result = pstmt.executeUpdate();
 			pstmt.close();
 			return result;
