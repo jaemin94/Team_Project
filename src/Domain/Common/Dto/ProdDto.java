@@ -5,17 +5,25 @@ public class ProdDto {
 	private int product_code;
 	private String product_name;
 	private int amount;
+	private int prod_price;
 	
 	public ProdDto()
 	{
 		
 	}
 
-	public ProdDto(int product_code, String product_name, int amount) 
+	public ProdDto(int product_code, String product_name, int amount,int prod_price) 
 	{
 		this.product_code = product_code;
 		this.product_name = product_name;
 		this.amount = amount;
+		this.prod_price = prod_price;
+	}
+
+
+
+	public void setProd_price(int prod_price) {
+		this.prod_price = prod_price;
 	}
 
 	public int getProduct_code() {
@@ -42,9 +50,17 @@ public class ProdDto {
 		this.amount = amount;
 	}
 
+	@Override
 	public String toString() {
-		return "ProdDto [product_code=" + product_code + ", product_name=" + product_name + ", amount=" + amount + "]";
+		return "ProdDto [product_code=" + product_code + ", product_name=" + product_name + ", amount=" + amount
+				+ ", prod_price=" + prod_price + "]";
 	}
+
+	public int getProd_price() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 	
 	

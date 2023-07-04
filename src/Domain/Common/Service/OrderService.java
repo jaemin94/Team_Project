@@ -1,7 +1,7 @@
 package Domain.Common.Service;
 
 import java.util.List;
-import java.util.Map;
+import java.util.UUID;
 
 import Domain.Common.Dao.MemberDao;
 import Domain.Common.Dao.OrderDao;
@@ -79,42 +79,124 @@ public class OrderService {
 //			}
 		
 	//==================================피드백
-		public boolean reqOrder(String id, int odr_amount) throws Exception {
-			
-			MemberDto mdto = new MemberDto();
-			ProdDto pdto = new ProdDto();
-			OrderDto odto = new OrderDto();
-			
-			// 관리자 로그인 확인, Role 받기
-			String role = memberService.getRole(id);
-			if (!role.equals("Role_Member")) {
-				System.out.println("[WARN] 관리자만 로그인 할 수 있습니다.");
-				return false;
-			}
-			// 회원 존재 유무 확인
-			mdto = memberService.memberSearchOne(role, mdto.getId());
-
-			if (mdto != null) {
-				// 상품 존재 유무 확인
-				pdto = productService.reqProd(pdto.getProduct_code());
-				if (pdto != null) {
-					
-					//pDao.UpdateAmount();
-					
-					// 주문완료		
-					oDao.insert(odto);
-						
-					System.out.println("[INFO] 주문완료");
-					return false;
-				}
-				System.out.println("[INFO] 제품없음.");
-				return false;
-			}
-			System.out.println("[INFO] 해당 회원이 존재하지 않습니다.");
-			return false;
+//		public boolean reqOrder(String id, int odr_amount) throws Exception {
+//			
+//			MemberDto mdto = new MemberDto();
+//			ProdDto pdto = new ProdDto();
+//			OrderDto odto = new OrderDto();
+//			
+//			// 관리자 로그인 확인, Role 받기
+//			String role = memberService.getRole(id);
+//			if (!role.equals("Role_Member")) {
+//				System.out.println("[WARN] 관리자만 로그인 할 수 있습니다.");
+//				return false;
+//			}
+//			// 회원 존재 유무 확인
+//			mdto = memberService.memberSearchOne(role, mdto.getId());
+//
+//			if (mdto != null) {
+//				// 상품 존재 유무 확인
+//				pdto = productService.reqProd(pdto.getProduct_code());
+//				if (pdto != null) {
+//					
+//					//pDao.UpdateAmount();
+//					
+//					// 주문완료		
+//					oDao.insert(odto);
+//						
+//					System.out.println("[INFO] 주문완료");
+//					return false;
+//				}
+//				System.out.println("[INFO] 제품없음.");
+//				return false;
+//			}
+//			System.out.println("[INFO] 해당 회원이 존재하지 않습니다.");
+//			return false;
+//		}
+//		
+//	public boolean reqOrder(String id, int odr_amount) throws Exception {
+//		MemberDto mdto = new MemberDto();
+//		ProdDto pdto = new ProdDto();
+//		OrderDto odto = new OrderDto();
+//		
+//		String role = memberService.getRole(id);
+//		if (!role.equals("Role_Member")) {
+//		      System.out.println("[WARN] 관리자만 로그인 할 수 있습니다.");
+//		      return false;
+//		}
+//		
+//	    mdto = memberService.memberSearchOne(role, id);
+//	    if (mdto != null) {
+//	       pdto = productService.reqProd(odto.getProduct_code());
+//	        if (pdto != null) {
+//	            int currentStock = pdto.getAmount();
+//	            if (currentStock >= odr_amount) {
+//	                int updatedStock = currentStock - odr_amount;
+//	                pdto.setAmount(updatedStock);
+//	                productService.updateProd(id, pdto);
+//	                oDao.insert(odto);
+//	                System.out.println("[INFO] 주문완료");
+//	                return true;
+//	            } else {
+//	                System.out.println("[INFO] 주문 수량이 재고보다 많습니다.");
+//	                return false;
+//	            }
+//	        } else {
+//	            System.out.println("[INFO] 해당 상품이 존재하지 않습니다.");
+//	            return false;
+//	        }
+//	    } else {
+//	        System.out.println("[INFO] 해당 회원이 존재하지 않습니다.");
+//	        return false;
+//	    }
+//	}
+//
+//	
+	
+	public boolean reqOrder(String sid, String id,int product_code, int odr_amount) throws Exception {
+		MemberDto mdto = new MemberDto();
+		ProdDto pdto = new ProdDto();
+		OrderDto odto = new OrderDto();
+		
+		String role = memberService.getRole(sid);
+		if (!role.equals("Role_Member")) {
+		      System.out.println("[WARN] 관리자만 로그인 할 수 있습니다.");
+		      return false;
 		}
 		
-		//==================================피드백
+	    mdto = memberService.memberSearchOne("Role_user", id);
+	    if (mdto != null) {
+	    	pdto = productService.reqProd(product_code); 
+	        if (pdto != null) {
+	            int currentStock = pdto.getAmount();
+	            if (currentStock >= odr_amount) {
+	                int updatedStock = currentStock - odr_amount;
+	                pdto.setAmount(updatedStock);
+	                productService.updateProd(id, pdto);
+	                
+	                odto.setOrder_id(UUID.randomUUID().toString()); // 주문 ID 설정
+	                odto.setProduct_code(product_code);
+	                
+	                oDao.insert(odto);
+	                System.out.println("[INFO] 주문완료");
+	                return true;
+	            } else {
+	                System.out.println("[INFO] 주문 수량이 재고보다 많습니다.");
+	                return false;
+	            }
+	        } else {
+	            System.out.println("[INFO] 해당 상품이 존재하지 않습니다.");
+	            return false;
+	        }
+	    } else {
+	        System.out.println("[INFO] 해당 회원이 존재하지 않습니다.");
+	        return false;
+	    }
+	}
+
+	
+	
+	//==================================피드백
 	
 	
 	// 모드 주문확인

@@ -67,6 +67,7 @@ public class ProdDao {
 					dto.setProduct_code(rs.getInt("product_code"));
 					dto.setProduct_name(rs.getString("product_name"));
 					dto.setAmount(rs.getInt("amount"));
+					dto.setProd_price(rs.getInt("prod_price"));
 					list.add(dto);
 				}
 			}
@@ -86,11 +87,14 @@ public class ProdDao {
 		pstmt.setInt(1, product_code);
 		rs=pstmt.executeQuery();
 		if(rs!=null) {
-			rs.next();
-			dto=new ProdDto();
-			dto.setProduct_code(rs.getInt("product_code"));
-			dto.setProduct_name(rs.getString("product_name"));
-			dto.setAmount(rs.getInt("amount"));
+			while(rs.next()) {
+				dto=new ProdDto();
+				dto.setProduct_code(rs.getInt("product_code"));
+				dto.setProduct_name(rs.getString("product_name"));
+				dto.setAmount(rs.getInt("amount"));
+				dto.setProd_price(rs.getInt("prod_price"));
+			}
+		
 		}
 		rs.close();
 		pstmt.close();
@@ -100,10 +104,11 @@ public class ProdDao {
 	public int insert(ProdDto dto)
 	{
 		try {
-			pstmt = conn.prepareStatement("insert into tbl_product values(?,?,?)");
+			pstmt = conn.prepareStatement("insert into tbl_product values(?,?,?,?)");
 			pstmt.setInt(1, dto.getProduct_code());
 			pstmt.setString(2, dto.getProduct_name());
 			pstmt.setInt(3, dto.getAmount());
+			pstmt.setInt(4, dto.getProd_price());
 			int result = pstmt.executeUpdate();
 			pstmt.close();
 			return result;
@@ -117,10 +122,11 @@ public class ProdDao {
 	public int update(ProdDto dto)
 	{
 		try {
-			pstmt = conn.prepareStatement("update tbl_product set product_name =  ?, amount = ? where product_code = ?");
+			pstmt = conn.prepareStatement("update tbl_product set product_name =  ?, amount = ?, prod_price =? where product_code = ?");
 			pstmt.setString(1, dto.getProduct_name());
 			pstmt.setInt(2, dto.getAmount());
-			pstmt.setInt(3, dto.getProduct_code());
+			pstmt.setInt(3, dto.getProd_price());
+			pstmt.setInt(4, dto.getProduct_code());
 			int result = pstmt.executeUpdate();
 			pstmt.close();
 			return result;

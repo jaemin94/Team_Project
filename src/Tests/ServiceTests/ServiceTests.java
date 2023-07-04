@@ -1,11 +1,14 @@
 package Tests.ServiceTests;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.util.Map;
 
 import org.junit.Test;
 
 import Domain.Common.Dto.ProdDto;
 import Domain.Common.Service.MemberService;
+import Domain.Common.Service.OrderService;
 import Domain.Common.Service.ProductService;
 
 public class ServiceTests {
@@ -16,14 +19,29 @@ public class ServiceTests {
 //		MemberService memberService = new MemberService();
 //		assertNotNull(service);
 //		
-//		Map<String, Object> login_sid = memberService.login("member1", "1234");
+//		Map<String, Object> login_sid = memberService.login("member9", "1234");
 //		
 //		System.out.println("sid: " + login_sid);
 //		
 //		
-//		boolean islend = service.reqOrder(login_sid,"member1",4);
+//		boolean islend = service.reqOrder("user1",4);
 //	}
 //	
+	@Test
+	public void test() throws Exception {
+	    OrderService service = new OrderService();
+	    MemberService memberService = new MemberService();
+	    assertNotNull(service);
+	    
+	    Map<String, Object> login_sid = memberService.login("member9", "1234");
+	    
+	    System.out.println("sid: " + login_sid);
+	    
+	    boolean isOrderSuccessful = service.reqOrder("member9","user1",3, 4);
+	    System.out.println("주문 성공 여부: " + isOrderSuccessful);
+	}
+
+	
 //	@Test
 //	public void test2() throws Exception {
 //		OrderService service = new OrderService();
@@ -45,11 +63,11 @@ public class ServiceTests {
 		MemberService memberService = new MemberService();
 
 		
-		Map<String, Object> login_sid = memberService.login("member1", "1234");
+		Map<String, Object> login_sid = memberService.login("member9", "1234");
 		
 		System.out.println("sid: " + login_sid);
 		
-		pService.addProd("member1",new ProdDto(3,"이것이 리눅스다",100));
+		pService.addProd("member9",new ProdDto(3,"이것이 리눅스다",100));
 		
 		
 	}
