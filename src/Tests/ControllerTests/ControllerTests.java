@@ -44,7 +44,7 @@ public class ControllerTests {
 	
 	@Test
 	public void test2_member() {
-		MemberService ms = new MemberService();
+		MemberService ms = new MemberService(); 
 
 		try {
 			Map<String, Object> tmp = ms.login("1234", "1234");

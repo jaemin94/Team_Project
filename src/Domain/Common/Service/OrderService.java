@@ -1,6 +1,7 @@
 package Domain.Common.Service;
 
 import java.util.List;
+import java.util.Map;
 
 import Domain.Common.Dao.MemberDao;
 import Domain.Common.Dao.OrderDao;
@@ -27,7 +28,7 @@ public class OrderService {
 		return instance;
 	}
 	
-	private OrderService()
+	public OrderService()
 	{
 		oDao = OrderDao.getInstance();
 		mDao = MemberDao.getInstance();
@@ -78,26 +79,30 @@ public class OrderService {
 //			}
 		
 	//==================================피드백
-		public boolean reqOrder(String sid, OrderDto orderDto) throws Exception {
+		public boolean reqOrder(String id, int odr_amount) throws Exception {
 			
-			// 사서 로그인 확인, Role 받기
-			String role = memberService.getRole(sid);
+			MemberDto mdto = new MemberDto();
+			ProdDto pdto = new ProdDto();
+			OrderDto odto = new OrderDto();
+			
+			// 관리자 로그인 확인, Role 받기
+			String role = memberService.getRole(id);
 			if (!role.equals("Role_Member")) {
-				System.out.println("[WARN] 사서만 로그인 할 수 있습니다.");
+				System.out.println("[WARN] 관리자만 로그인 할 수 있습니다.");
 				return false;
 			}
 			// 회원 존재 유무 확인
-			MemberDto dto = memberService.memberSearchOne(role, orderDto.getMember_id());
+			mdto = memberService.memberSearchOne(role, mdto.getId());
 
-			if (dto != null) {
+			if (mdto != null) {
 				// 상품 존재 유무 확인
-				ProdDto pdto = productService.reqProd(orderDto.getProduct_code());
+				pdto = productService.reqProd(pdto.getProduct_code());
 				if (pdto != null) {
 					
 					//pDao.UpdateAmount();
 					
 					// 주문완료		
-					oDao.insert(orderDto);
+					oDao.insert(odto);
 						
 					System.out.println("[INFO] 주문완료");
 					return false;
@@ -113,7 +118,7 @@ public class OrderService {
 	
 	
 	// 모드 주문확인
-	public List<OrderDto> getAllOrder(OrderDto dto)
+	public List<OrderDto> getAllOrder()
 	{
 		System.out.println("OrderService's getAllOrder()");
 		return oDao.select();
@@ -129,11 +134,11 @@ public class OrderService {
 	}
 	
 	// 주문하기
-	public boolean addOrder(OrderDto dto, String sid)
+	public boolean addOrder(OrderDto dto, String login_sid)
 	{
 		System.out.println("OrderService's addOrder()");
 		
-		String role = memberService.getRole(sid);
+		String role = memberService.getRole(login_sid);
 		
 		if(role.equals("Role_Member"))
 		{
@@ -146,11 +151,11 @@ public class OrderService {
 	}
 	
 	// 주문정보 수정
-	public boolean updateOrder(OrderDto dto, String sid)
+	public boolean updateOrder(OrderDto dto, String login_sid)
 	{
 		System.out.println("OrderService's updateOrder()");
 		
-		String role = memberService.getRole(sid);
+		String role = memberService.getRole(login_sid);
 		
 		if(role.equals("Role_Member"))
 		{
@@ -178,10 +183,10 @@ public class OrderService {
 //	}
 	
 	// 주문 완료 및 취소 처리
-	public boolean removeOrder(String order_id, String sid)
+	public boolean removeOrder(String order_id, String login_sid)
 	{
 		System.out.println("BookService's removeOrder()");
-		String role = memberService.getRole(sid);
+		String role = memberService.getRole(login_sid);
 		if(role.equals("Role_Member"))
 		{
 		int result = oDao.delete(order_id);
@@ -190,6 +195,8 @@ public class OrderService {
 		}
 		return false;
 	}
+
+
 	
 	
 

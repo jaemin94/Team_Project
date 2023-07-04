@@ -53,8 +53,10 @@ public class MemberService {
 	}
 	//회원 조회하기(한명)
 	public MemberDto memberSearchOne(String role,String id) throws Exception{
-		if(role.equals("ROLE_MEMBER"))		
+		
+            if(role.equals("Role_user"))		
 			return dao.select(id);
+		
 		return null;
 	}	
 	
@@ -101,10 +103,10 @@ public class MemberService {
 	
 	
 	//로그인
-	public Map<String,Object> login(String id, String pw) throws Exception{
+	public Map<String, Object> login(String id, String pw) throws Exception{
 		//1 ID/PW 체크 ->Dao 전달받은 id와 일치하는 정보를 가져와서 Pw일치 확인
 		MemberDto dbDto = dao.select(id);
-		if(dbDto==null) {
+		if(!id.equals(dbDto.getId())) {
 			System.out.println("[ERROR] Login Fail... 아이디가 일치하지 않습니다");
 			return null;
 		}
@@ -125,8 +127,9 @@ public class MemberService {
 		
 		//3 세션에 대한정보를 클라이언트가 접근할수 있도록하는 세션구별Id(Session Cookie) 전달
 		Map<String,Object> result = new HashMap();
-		result.put("sid", sid);
+		
 		result.put("role", dbDto.getRole());
+		result.put("sid", sid);
 		return result;
 	}
 	
@@ -137,6 +140,7 @@ public class MemberService {
 	}
 	
 	//역할반환함수 
+<<<<<<< HEAD
 	public String getRole(String sid) {
 //		Session session = sessionMap.get(sid);
 		Session session = sessionMap.get(tmp);
@@ -146,6 +150,24 @@ public class MemberService {
 			}
 		
 		return null;
+=======
+	public String getRole(Map<String, Object> login_sid, String id) {
+		MemberDto dbDto = dao.select(id);
+		String sid=UUID.randomUUID().toString();
+		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
+		sessionMap.put(sid, session);
+		System.out.println("getRole's Session : " + session);
+		return session.getRole();
+	}
+	//역할반환함수 
+	public String getRole(String id) {
+		MemberDto dbDto = dao.select(id);
+		String sid=UUID.randomUUID().toString();
+		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
+		sessionMap.put(sid, session);
+		System.out.println("getRole's Session : " + session);
+		return session.getRole();
+>>>>>>> 953a52a84c9cc95fa48514453a73fc341ff078a3
 	}
 	
 }
