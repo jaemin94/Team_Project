@@ -19,11 +19,11 @@ public class ServiceTests {
 	    assertNotNull(service);
 	    
 	    // 로그인 정보 가져오기
-	    Map<String, Object> login_sid = memberService.login("member1", "1234");
+	    Map<String, Object> login_sid = memberService.login("user1", "1234");
 	    System.out.println("sid: " + login_sid);
 	    
 	    // 주문 요청 테스트
-	    boolean isOrderSuccessful = service.reqOrder2("member1", "user1",3, 5);
+	    boolean isOrderSuccessful = service.reqOrder2("user1", "user1",2, 5);
 	    System.out.println("주문 성공 여부: " + isOrderSuccessful);
 	}
 //	
