@@ -74,7 +74,7 @@ CREATE TABLE `tbl_order` (
 
 LOCK TABLES `tbl_order` WRITE;
 /*!40000 ALTER TABLE `tbl_order` DISABLE KEYS */;
-INSERT INTO `tbl_order` VALUES ('1','user1',3,'청바지','달서구',100,'2023-07-04',1);
+INSERT INTO `tbl_order` VALUES ('1','user1',3,'청바지','달서구',100,'2023-07-04',1),('200','user1',3,'이것이 리눅스다','달서구',5,'2023-07-04',0),('201','user1',3,'이것이 리눅스다','달서구',5,'2023-07-04',0),('202','user1',3,'이것이 리눅스다','달서구',5,'2023-07-04',0),('da1c01ac-4bee-4452-8353-1244ecf8136a','user1',2,'이것이 리눅스다','달서구',5,'2023-07-04',15000);
 /*!40000 ALTER TABLE `tbl_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,6 +89,7 @@ CREATE TABLE `tbl_product` (
   `product_code` int NOT NULL,
   `product_name` varchar(45) DEFAULT NULL,
   `amount` int DEFAULT NULL,
+  `prod_price` int DEFAULT NULL,
   PRIMARY KEY (`product_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -99,7 +100,7 @@ CREATE TABLE `tbl_product` (
 
 LOCK TABLES `tbl_product` WRITE;
 /*!40000 ALTER TABLE `tbl_product` DISABLE KEYS */;
-INSERT INTO `tbl_product` VALUES (1,'p1',10),(3,'이것이 리눅스다',100);
+INSERT INTO `tbl_product` VALUES (1,'p1',10,NULL),(2,'이것이 리눅스다',95,3000);
 /*!40000 ALTER TABLE `tbl_product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -112,4 +113,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-07-04 13:10:13
+-- Dump completed on 2023-07-04 17:24:50
