@@ -79,18 +79,18 @@ public class OrderService {
 //			}
 		
 	//==================================피드백
-		public boolean reqOrder(Map<String, Object> login_sid,String id, int odr_amount) throws Exception {
+		public boolean reqOrder(String id, int odr_amount) throws Exception {
 			
 			MemberDto mdto = new MemberDto();
 			ProdDto pdto = new ProdDto();
 			OrderDto odto = new OrderDto();
 			
 			// 관리자 로그인 확인, Role 받기
-			String role = memberService.getRole(login_sid);
-//			if (!role.equals("Role_user")) {
-//				System.out.println("[WARN] 관리자만 로그인 할 수 있습니다.");
-//				return false;
-//			}
+			String role = memberService.getRole(id);
+			if (!role.equals("Role_Member")) {
+				System.out.println("[WARN] 관리자만 로그인 할 수 있습니다.");
+				return false;
+			}
 			// 회원 존재 유무 확인
 			mdto = memberService.memberSearchOne(role, mdto.getId());
 
@@ -118,7 +118,7 @@ public class OrderService {
 	
 	
 	// 모드 주문확인
-	public List<OrderDto> getAllOrder(OrderDto dto)
+	public List<OrderDto> getAllOrder()
 	{
 		System.out.println("OrderService's getAllOrder()");
 		return oDao.select();
@@ -134,7 +134,7 @@ public class OrderService {
 	}
 	
 	// 주문하기
-	public boolean addOrder(OrderDto dto, Map<String, Object> login_sid)
+	public boolean addOrder(OrderDto dto, String login_sid)
 	{
 		System.out.println("OrderService's addOrder()");
 		
@@ -151,7 +151,7 @@ public class OrderService {
 	}
 	
 	// 주문정보 수정
-	public boolean updateOrder(OrderDto dto, Map<String, Object> login_sid)
+	public boolean updateOrder(OrderDto dto, String login_sid)
 	{
 		System.out.println("OrderService's updateOrder()");
 		
@@ -183,7 +183,7 @@ public class OrderService {
 //	}
 	
 	// 주문 완료 및 취소 처리
-	public boolean removeOrder(String order_id, Map<String, Object> login_sid)
+	public boolean removeOrder(String order_id, String login_sid)
 	{
 		System.out.println("BookService's removeOrder()");
 		String role = memberService.getRole(login_sid);
