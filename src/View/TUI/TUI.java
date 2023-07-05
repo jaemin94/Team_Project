@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import Controller.FrontController;
 import Domain.Common.Dto.MemberDto;
+import Domain.Common.Dto.OrderDto;
 import Domain.Common.Dto.ProdDto;
 
 
@@ -85,6 +86,11 @@ public class TUI {
 			회원Menu();
 		else
 			System.out.println("잘못된 접근입니다");
+	}
+	
+	public void 회원Menu()
+	{
+		
 	}
 	
 	public void 관리자Menu() {
@@ -175,23 +181,28 @@ public class TUI {
 				break;
 				
 			case 6 :
+//				String member_id = sc.next();
+				Map<String,Object> param4 = new HashMap();
 				
+//				param4.put("member_id", member_id);
+				param4.put("sid", sid);
+				
+				Map<String, Object> result6 = controller.execute("/order", 1, param4);
+				List<OrderDto> list2 = (List<OrderDto>) result6.get("result");
+				list2.stream().forEach((dto) -> {System.out.println(dto);});
 				break;
 			case 7:
-				// 대여하기
-				int req_bookcode = sc.nextInt();
-				String userid = sc.next();
-				Map<String,Object> lend_param = new HashMap();
-				lend_param.put("bookcode", req_bookcode);
-				lend_param.put("id", userid);
-				lend_param.put("sid", sid);
+				System.out.print("주문 번호 입력 : ");
+				String order_id = sc.next();
+				Map<String,Object> param3 = new HashMap();
 				
-				Map<String,Object> result7 = controller.execute("/lend", 2, lend_param);
-				Boolean isLend = (Boolean)result7.get("result");
-				if(isLend == true)
-				{
-					System.out.println("[INFO] 대여 완료!");
-				}
+				param3.put("sid", sid);
+				param3.put("order_id", order_id);
+				
+				
+				Map<String, Object> result7 = controller.execute("/order", 2, param3);
+				OrderDto dto = (OrderDto) result7.get("result");
+				System.out.println(dto.toString());
 				break;
 				
 			case 10 : 

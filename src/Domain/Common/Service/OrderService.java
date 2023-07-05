@@ -177,20 +177,20 @@ public class OrderService {
 		    
 		
 		// 주문 전체확인
-	public List<OrderDto> getOrder(String sid)
+	public List<OrderDto> getOrder()
 	{
-		String role = this.memberService.getRole(sid);
-		
-		if(role.equals("Role_Member"))		
+//		String role = this.memberService.getRole(sid);
+//		
+//		if(role.equals("Role_Member"))		
 			return oDao.select();
 		
-		return null;	
+//		return null;	
 	}
 	
 	// 건별 주문 확인
 	public OrderDto getOrder(String role,String order_id)
 	{
-		if(role.equals("Role_Member"))		
+		if(role.equals("Role_member"))		
 			return oDao.select(order_id);
 		
 		return null;

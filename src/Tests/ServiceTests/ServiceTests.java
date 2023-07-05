@@ -1,30 +1,35 @@
 package Tests.ServiceTests;
 
-import static org.junit.Assert.assertNotNull;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Test;
 
-import Domain.Common.Service.MemberService;
+import Domain.Common.Dao.OrderDao;
+import Domain.Common.Dto.OrderDto;
 import Domain.Common.Service.OrderService;
 
 public class ServiceTests {
 
+//	@Test
+//	public void test() throws Exception {
+//		OrderService service = new OrderService();
+//	    MemberService memberService = new MemberService();
+//	    assertNotNull(service);
+//	    
+//	    // 로그인 정보 가져오기
+//	    Map<String, Object> login_sid = memberService.login("user1", "1234");
+//	    System.out.println("sid: " + login_sid);
+//	    
+//	    // 주문 요청 테스트
+//	    boolean isOrderSuccessful = service.reqOrder("user1", "user1",2, 5);
+//	    System.out.println("주문 성공 여부: " + isOrderSuccessful);
+//	}
 	@Test
 	public void test() throws Exception {
 		OrderService service = new OrderService();
-	    MemberService memberService = new MemberService();
-	    assertNotNull(service);
-	    
-	    // 로그인 정보 가져오기
-	    Map<String, Object> login_sid = memberService.login("user1", "1234");
-	    System.out.println("sid: " + login_sid);
-	    
-	    // 주문 요청 테스트
-	    boolean isOrderSuccessful = service.reqOrder("user1", "user1",2, 5);
-	    System.out.println("주문 성공 여부: " + isOrderSuccessful);
+		OrderDto dto = service.getOrder("Role_Member", "1");
+		System.out.println(dto.toString());
+		
+		
+		
 	}
 //	
 //	@Test

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
+import Domain.Common.Dto.ProdDto;
 import Domain.Common.Service.OrderService;
 
 public class OrderController {
@@ -27,30 +28,40 @@ public class OrderController {
 	// 1 Select , 2 Insert , 3 Update , 4 Delete
 	public Map<String,Object> execute (int serviceNo,Map<String,Object> param){
 		if (serviceNo == 1) {
-			// 1 파라미터 추출
-			String member_id = (String) param.get("member_id");
-			String sid=(String)param.get("sid");
-			// 2 입력값 검증
-			if(sid==null||member_id==null) {
-				System.out.println("[ERROR] Data Validation Check..");
-				return null;
-			}
-			// 3 서비스 실행(서비스모듈작업 이후 처리)
 			List<OrderDto> list = null;
 			try {
-				list =  service.getOrder(sid);
+				list = service.getOrder();
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
+			
 				e.printStackTrace();
 			}
-			// service.getAllLend(sid);
-			
-			// 4 View로 전달
-			System.out.println("Order_select Block!");;
-			Map<String, Object> result = new HashMap();
+			System.out.println("Prod_Select All Block!");
+			Map<String,Object>result = new HashMap();
 			result.put("result", list);
 			return result;
-	}	else if (serviceNo == 3) {
+	}
+		else if (serviceNo == 2) {
+			String sid = (String)param.get("sid");
+			String order_id = (String)param.get("order_id");
+			
+			if(sid==null||order_id==null) {
+				System.out.println("[ERROR] Data Validation Check Error");
+				return null;
+			}
+			
+			OrderDto dto = null;
+			try {
+				dto =service.getOrder(sid,order_id);
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			Map<String,Object>result = new HashMap();
+			result.put("result", dto);
+			return result;
+		}
+		
+		else if (serviceNo == 3) {
 		// 1 파라미터 추출
 		String order_id = (String) param.get("order_id");
 		String member_id = (String) param.get("member_id");
@@ -71,21 +82,21 @@ public class OrderController {
 		System.out.println("Dto : " + dto);
 		
 		
-//		Boolean rValue=false;
-//		try {
-//			rValue = service.reqOrder(sid, member_id, order_id);
-//		
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+		Boolean rValue=false;
+		try {
+			rValue = service.reqOrder(sid, member_id, product_code,odr_amount);
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		 
 		
 		// 4 View로 전달
-//		System.out.println("Order_insert Block!");
-//		Map<String,Object> result = new HashMap();
-//		result.put("result", rValue);
-//		return result;
+		System.out.println("Order_insert Block!");
+		Map<String,Object> result = new HashMap();
+		result.put("result", rValue);
+		return result;
 	
 } else if (serviceNo == 4) {
 	// 1 파라미터 추출
