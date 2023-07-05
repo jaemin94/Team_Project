@@ -8,22 +8,17 @@ import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
 import Domain.Common.Dto.ProdDto;
 import Domain.Common.Service.OrderService;
+import Domain.Common.Service.ProductService;
 
 public class OrderController {
 
-	OrderService service;
 	
-//	public OrderController(){
-//		service = OrderService.getInstance();
-////	private String order_id;
-////	private String member_id;
-////	private int product_code;
-////	private String product_name;
-////	private String adr_addr;
-////	private int odr_amount;
-////	private Date odr_date;
-////	private int price;
-//	}
+	
+private OrderService service;
+	
+	public OrderController() {
+		service = OrderService.getInstance();
+	}
 	
 	// 1 Select , 2 Insert , 3 Update , 4 Delete
 	public Map<String,Object> execute (int serviceNo,Map<String,Object> param){
@@ -51,7 +46,7 @@ public class OrderController {
 			
 			OrderDto dto = null;
 			try {
-				dto =service.getOrder(sid,order_id);
+				dto =service.getOrder(order_id);
 			} catch (Exception e) {
 				
 				e.printStackTrace();
@@ -73,25 +68,23 @@ public class OrderController {
 		String sid=(String) param.get("sid");
 		
 		// 2 입력값 검증
-		if(order_id==null||member_id==null||product_code==null||product_name==null||adr_addr==null||odr_amount==null||price==null||sid==null) {
+		if(member_id==null||product_code==null||odr_amount==null) {
 			System.out.println("[ERROR]Data Validation Check Error");
 			return null;
 		}
 		// 3 서비스 실행
 		OrderDto dto = new OrderDto(order_id,member_id,product_code,product_name,adr_addr,odr_amount,null,price);
 		System.out.println("Dto : " + dto);
-		
-		
+	
 		Boolean rValue=false;
 		try {
-			rValue = service.reqOrder(sid, member_id, product_code,odr_amount);
+			rValue = service.reqOrder(member_id, product_code,odr_amount);
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 
-		
+
 		// 4 View로 전달
 		System.out.println("Order_insert Block!");
 		Map<String,Object> result = new HashMap();

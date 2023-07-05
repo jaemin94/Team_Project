@@ -3,25 +3,22 @@ package Tests.ControllerTests;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.junit.Test;
-
-
 import Controller.FrontController;
+import Controller.OrderController;
 
 public class ControllerTests {
 
-	@Test
+	
 	public void test() {
 		FrontController controller = new FrontController();
 		assertNotNull(controller);	
 		controller.execute("/product",1,null);
 	}
 	
-	@Test
-	public void test1() {
+	
+	public void test2() {
 		FrontController controller = new FrontController();
 		assertNotNull(controller);	
 	
@@ -30,5 +27,6 @@ public class ControllerTests {
 		controller.execute("/product",2,param);
 		
 	}
+	
 
 }

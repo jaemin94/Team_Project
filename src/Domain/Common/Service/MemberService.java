@@ -47,17 +47,17 @@ public class MemberService {
 		
 		String role = this.getRole(sid);
 		
-		if(role.equals("ROLE_MEMBER"))		
+		if(role.equals("Role_Member"))		
 			return dao.select();
 		return null;
 	}
 	//회원 조회하기(한명) - 사서
 	public MemberDto memberSearchOne(String role,String id) throws Exception{
 		
-            if(role.equals("Role_user"))		
+//            if(role.equals("Role_user"))		
 			return dao.select(id);
 		
-		return null;
+//		return null;
 	}	
 	
 	
@@ -137,8 +137,8 @@ public class MemberService {
 	//역할반환함수 
 public String getRole(String sid) {
 		
-		System.out.println("Flag!! MemberService149: " + sid);
-		System.out.println("Flag!! MemberService150: " + sessionMap.get(sid));
+//		System.out.println("Flag!! MemberService149: " + sid);
+//		System.out.println("Flag!! MemberService150: " + sessionMap.get(sid));
 		Session session = sessionMap.get(sid);
 		System.out.println("getRole's Session : " + session);
 		if(session!=null) {

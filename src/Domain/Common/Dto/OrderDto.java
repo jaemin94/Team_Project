@@ -38,6 +38,13 @@ public class OrderDto {
 		this.odr_date = odr_date;
 		this.price = price;
 	}
+	
+	public OrderDto(String member_id,int product_code,int odr_amount)
+	{
+		this.member_id = member_id;
+		this.product_code = product_code;
+		this.odr_amount = odr_amount;
+	}
 
 	public String getOrder_id() {
 		return order_id;

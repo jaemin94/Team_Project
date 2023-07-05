@@ -19,7 +19,7 @@ public class OrderService {
 	private ProdDao pDao;
 	private static OrderService instance;
 	
-	public OrderService getInstance()
+	public static OrderService getInstance()
 	{
 		if(instance == null)
 		{
@@ -97,16 +97,16 @@ public class OrderService {
 		// ---------------------------------------------------------------- 테스트 ------------------------------------------
 		
 		// -------------------------------------------------------------------------------------- 민영씨 코드
-		public boolean reqOrder(String sid, String id, int product_code, int odr_amount) throws Exception {
+		public boolean reqOrder(String id, int product_code, int odr_amount) throws Exception {
 		    MemberDto mdto = new MemberDto();
 		    ProdDto pdto = new ProdDto();
 		    OrderDto odto = new OrderDto();
 
-		    String role = memberService.getRole(sid);
-		    if (!role.equals("Role_user")) {
-		        System.out.println("[WARN] 회원만 로그인 할 수 있습니다.");
-		        return false;
-		    }
+		    String role = memberService.getRole(id);
+//		    if (!role.equals("Role_user")) {
+//		        System.out.println("[WARN] 회원만 로그인 할 수 있습니다.");
+//		        return false;
+//		    }
 
 		    mdto = memberService.memberSearchOne(role, id);
 		    if (mdto != null) {
@@ -177,24 +177,18 @@ public class OrderService {
 		    
 		
 		// 주문 전체확인
-	public List<OrderDto> getOrder()
+	public List<OrderDto> getOrder() throws Exception
 	{
-//		String role = this.memberService.getRole(sid);
-//		
-//		if(role.equals("Role_Member"))		
-			return oDao.select();
-		
-//		return null;	
+//		System.out.println("Product Service's reqAllProd()");
+		return oDao.select();
 	}
 	
 	// 건별 주문 확인
-	public OrderDto getOrder(String role,String order_id)
+	public OrderDto getOrder(String order_id)
 	{
-		if(role.equals("Role_member"))		
+			
 			return oDao.select(order_id);
-		
-		return null;
-		
+	
 	}
 	
 	// 주문하기

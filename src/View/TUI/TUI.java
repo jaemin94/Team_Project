@@ -81,30 +81,81 @@ public class TUI {
 		
 		//임의 지울것
 		if(role.equals("Role_Member"))
-			관리자Menu();
+			ManagerMenu();
 		else if(role.equals("Role_user"))
-			회원Menu();
+			MemberMenu();
 		else
 			System.out.println("잘못된 접근입니다");
 	}
 	
-	public void 회원Menu()
-	{
-		
+	public void MemberMenu() {
+		while (true) {
+			System.out.println("--------------------------");
+			System.out.println("회원메뉴");
+			System.out.println("--------------------------");
+			System.out.println("[상품]			[주문]");
+			System.out.println("11. 상품조회하기	");
+			System.out.println("12. 상품주문하기");	
+			System.out.println("0. 로그아웃");
+			System.out.print("번호 : ");
+			int num = sc.nextInt();
+			switch(num) {
+			case 11:
+				Map<String, Object> result11memb = controller.execute("/product", 1, null);
+				List<ProdDto> list = (List<ProdDto>) result11memb.get("result");
+				list.stream().forEach((dto) -> {
+					System.out.println("--------------------------");
+					System.out.println("상품 이름: " + dto.getProduct_name());
+					System.out.println("상품 수량: " + dto.getAmount());
+				});
+				result11memb = null;
+				break;
+			case 12:
+				String id = sc.next();
+				int product_code = sc.nextInt();
+				int odr_amount = sc.nextInt();
+				Map<String,Object> result12memb = new HashMap();
+				result12memb.put("member_id", id);
+				result12memb.put("product_code", product_code);
+				result12memb.put("odr_amount", odr_amount);
+				result12memb.put("price", 0);
+				
+				Map<String, Object> result12 = controller.execute("/order", 3, result12memb);
+				Boolean isOrdered = (Boolean)result12.get("result");
+				if(isOrdered == true)
+				{
+					System.out.println("[INFO] 주문 완료!");
+				}
+				break;
+
+			case 21 :
+				Map<String, Object> result21memb = controller.execute("/order", 1, null);
+				
+				
+				
+				result21memb = null;
+				break;
+				
+			case 0 : 
+				return ;
+				
+			}
+			
+		}
 	}
 	
-	public void 관리자Menu() {
+	public void ManagerMenu() {
 		while (true) {
 			System.out.println("--------------------------");
 			System.out.println("관리자메뉴");
 			System.out.println("--------------------------");
 			System.out.println("[상품]			[회원]			[주문]");
-			System.out.println("1 상품조회하기		5 회원 전체조회		6 주문 전체조회"	);
+			System.out.println("1 상품조회하기		5 				6 주문 전체조회"	);
 			System.out.println("2 상품추가하기					    7 주문 단건조회"	);
-			System.out.println("3 상품수정하기		 				8 주문 완료삭제	"	);
+			System.out.println("3 상품수정하기		 				8 			"	);
 			System.out.println("4 상품삭제하기									"	);	
-			System.out.println("9 이전으로");
-			System.out.println("10로그아웃");
+			System.out.println("9  ");
+			System.out.println("10 ");
 			System.out.print("번호 : ");
 			int num = sc.nextInt();
 			switch(num)
@@ -137,12 +188,12 @@ public class TUI {
 				break;
 			case 3:
 				
-				System.out.print("상품코드 상품명 재고량 상품가격 입력 : ");
-				int product_code1 = sc.nextInt();
+				System.out.print("상품명 재고량 상품가격 상품코드 입력 : ");
+				
 				String product_name1 = sc.next();
 				int amount1 = sc.nextInt();
 				int prod_price1 = sc.nextInt();
-				
+				int product_code1 = sc.nextInt();
 				Map<String,Object> param1 = new HashMap();
 				
 				param1.put("product_name", product_name1);
@@ -181,13 +232,7 @@ public class TUI {
 				break;
 				
 			case 6 :
-//				String member_id = sc.next();
-				Map<String,Object> param4 = new HashMap();
-				
-//				param4.put("member_id", member_id);
-				param4.put("sid", sid);
-				
-				Map<String, Object> result6 = controller.execute("/order", 1, param4);
+				Map<String, Object> result6 = controller.execute("/order", 1, null);
 				List<OrderDto> list2 = (List<OrderDto>) result6.get("result");
 				list2.stream().forEach((dto) -> {System.out.println(dto);});
 				break;
