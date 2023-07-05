@@ -20,6 +20,7 @@ public class ProductController {
 
 	public Map<String,Object> execute (int serviceNo, Map<String,Object>param){
 		
+		// 상품 전체 조회
 		if(serviceNo==1) {
 			List<ProdDto> list = null;
 			try {
@@ -33,6 +34,7 @@ public class ProductController {
 			result.put("result", list);
 			return result;
 			
+			// 상품 단건 조회
 		}else if(serviceNo==2) {
 			String sid = (String)param.get("sid");
 			Integer product_code = (Integer)param.get("product_code");
@@ -54,13 +56,17 @@ public class ProductController {
 			return result;
 			
 			
-			
+			// 상품 추가
 		}else if(serviceNo==3) {
 			String sid = (String)param.get("sid");
 			Integer product_code = (Integer)param.get("product_code");
 			String product_name = (String)param.get("product_name");
 			Integer amount = (Integer)param.get("amount");
+<<<<<<< HEAD
 			Integer prod_price=(Integer)param.get("prod_price");
+=======
+			Integer prod_price = (Integer)param.get("prod_price");
+>>>>>>> 2b424ee8338ed23ea3cf5d7a8977cc433fcc8b7c
 			
 			if(product_code==null||product_name == null || amount ==null) {
 				System.out.println("[ERROR] Data Validation Check Error");
@@ -82,12 +88,16 @@ public class ProductController {
 			result.put("result", rValue);
 			return result;
 		
+			// 상품 수정
 		}else if(serviceNo==4) {
 			String sid = (String)param.get("sid");
 			Integer product_code = (Integer)param.get("product_code");
 			String product_name = (String)param.get("product_name");
 			Integer amount = (Integer)param.get("amount");
-			Integer prod_price=(Integer)param.get("prod_price");
+
+			Integer prod_price = (Integer)param.get("prod_price");
+			
+
 			
 			if(product_code==null||product_name==null||amount==null) {
 				System.out.println("[ERROR] Data Validation Check Error");
@@ -109,6 +119,7 @@ public class ProductController {
 			result.put("result", rValue);
 			return result;
 			
+			// 상품 삭제
 		}else if(serviceNo==5) {
 			String sid= (String)param.get("sid");
 			Integer product_code = (Integer)param.get("product_code");

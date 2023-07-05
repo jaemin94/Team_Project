@@ -69,7 +69,7 @@ public class OrderDao {
 				{
 					dto = new OrderDto();
 					dto.setOrder_id(rs.getString("order_id"));
-					dto.setMember_id(rs.getString("Member_id"));
+					dto.setMember_id(rs.getString("member_id"));
 					dto.setProduct_code(rs.getInt("product_code"));
 					dto.setProduct_name(rs.getString("product_name"));
 					dto.setAdr_addr(rs.getString("adr_addr"));
@@ -132,6 +132,7 @@ public class OrderDao {
 			pstmt.setString(5, dto.getAdr_addr());
 			pstmt.setInt(6, dto.getOdr_amount());
 			pstmt.setInt(7, dto.getPrice());
+
 			int result = pstmt.executeUpdate();
 			pstmt.close();
 			return result;

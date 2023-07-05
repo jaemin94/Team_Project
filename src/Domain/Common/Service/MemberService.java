@@ -17,7 +17,7 @@ public class MemberService {
 	public Map<String,Session> sessionMap;
 	
 	private MemberDao dao;
-	
+
 	
 	
 	//싱글톤
@@ -47,17 +47,17 @@ public class MemberService {
 		
 		String role = this.getRole(sid);
 		
-		if(role.equals("ROLE_MEMBER"))		
+		if(role.equals("Role_Member"))		
 			return dao.select();
 		return null;
 	}
 	//회원 조회하기(한명) - 사서
 	public MemberDto memberSearchOne(String role,String id) throws Exception{
 		
-            if(role.equals("Role_user"))		
+//            if(role.equals("Role_user"))		
 			return dao.select(id);
 		
-		return null;
+//		return null;
 	}	
 	
 	
@@ -133,23 +133,20 @@ public class MemberService {
 
 	}
 	
+
 	//역할반환함수 
-	public String getRole(Map<String, Object> login_sid, String id) {
-		MemberDto dbDto = dao.select(id);
-		String sid=UUID.randomUUID().toString();
-		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
-		sessionMap.put(sid, session);
+public String getRole(String sid) {
+		
+//		System.out.println("Flag!! MemberService149: " + sid);
+//		System.out.println("Flag!! MemberService150: " + sessionMap.get(sid));
+		Session session = sessionMap.get(sid);
 		System.out.println("getRole's Session : " + session);
-		return session.getRole();
+		if(session!=null) {
+			return session.getRole();
+			}
+		
+		return null;
 	}
-	//역할반환함수 
-	public String getRole(String id) {
-		MemberDto dbDto = dao.select(id);
-		String sid=UUID.randomUUID().toString();
-		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
-		sessionMap.put(sid, session);
-		System.out.println("getRole's Session : " + session);
-		return session.getRole();
-	}
-	
+
+
 }

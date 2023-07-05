@@ -12,14 +12,15 @@ public class ProdDto {
 		
 	}
 
-	public ProdDto(int product_code, String product_name, int amount,int prod_price) 
+
+	public ProdDto(int product_code, String product_name, int amount, int prod_price) 
+
 	{
 		this.product_code = product_code;
 		this.product_name = product_name;
 		this.amount = amount;
 		this.prod_price = prod_price;
 	}
-
 
 
 
@@ -56,12 +57,11 @@ public class ProdDto {
 		this.amount = amount;
 	}
 
-	@Override
+
 	public String toString() {
 		return "ProdDto [product_code=" + product_code + ", product_name=" + product_name + ", amount=" + amount
 				+ ", prod_price=" + prod_price + "]";
 	}
-
 
 	
 	
