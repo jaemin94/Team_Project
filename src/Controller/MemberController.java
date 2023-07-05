@@ -31,7 +31,6 @@ public class MemberController {
 			try {
 				list =  service.memberSearch(sid);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

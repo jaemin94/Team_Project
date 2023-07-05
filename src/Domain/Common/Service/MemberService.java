@@ -127,7 +127,7 @@ public class MemberService {
 		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
 		sessionMap.put(sid, session);
 		
-		System.out.println("Flag!! MemberService126: " + sessionMap.get(sid));
+//		System.out.println("Flag!! MemberService126: " + sessionMap.get(sid));
 		
 		//3 세션에 대한정보를 클라이언트가 접근할수 있도록하는 세션구별Id(Session Cookie) 전달
 		Map<String,Object> result = new HashMap();

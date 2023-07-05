@@ -86,7 +86,7 @@ public class MemberDao {
 					dto.setId(rs.getString("member_id"));
 					dto.setPw(rs.getString("pw"));
 					dto.setusername(rs.getString("name"));
-					dto.setAdr_addr(rs.getString("addr"));
+					dto.setAdr_addr(rs.getString("adr_addr"));
 					dto.setRole(rs.getString("role"));
 					list.add(dto);
 					
@@ -124,7 +124,7 @@ public class MemberDao {
 				dto.setId(rs.getString("member_id"));
 				dto.setPw(rs.getString("pw"));
 				dto.setusername(rs.getString("name"));
-				dto.setAdr_addr(rs.getString("addr"));
+				dto.setAdr_addr(rs.getString("adr_addr"));
 				dto.setRole(rs.getString("role"));	
 
 			}
