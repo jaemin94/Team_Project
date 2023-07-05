@@ -55,7 +55,7 @@ public class ProductService {
 	public boolean updateProd(String id, ProdDto dto) throws Exception {
 		System.out.println("Product Services's updateProd()");
 		String role = memberService.getRole(id);
-		if(role.equals("ROLE_MEMBER")) {
+		if(role.equals("Role_Member")) {
 			int result = dao.update(dto);
 			if(result>0)
 				return true;
@@ -77,7 +77,7 @@ public class ProductService {
 	public boolean removeProd(String sid, int product_code) throws Exception{
 		System.out.println("ProductService's removeProd()");
 		String role = memberService.getRole(sid);
-		if(role.equals("ROLE_MEMBER")) {
+		if(role.equals("Role_Member")) {
 			int result = dao.delete(product_code);
 			if(result >0)
 				return true;

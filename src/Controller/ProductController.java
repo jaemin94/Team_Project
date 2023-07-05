@@ -20,6 +20,7 @@ public class ProductController {
 
 	public Map<String,Object> execute (int serviceNo, Map<String,Object>param){
 		
+		// 상품 전체 조회
 		if(serviceNo==1) {
 			List<ProdDto> list = null;
 			try {
@@ -33,6 +34,7 @@ public class ProductController {
 			result.put("result", list);
 			return result;
 			
+			// 상품 단건 조회
 		}else if(serviceNo==2) {
 			String sid = (String)param.get("sid");
 			Integer product_code = (Integer)param.get("product_code");
@@ -54,7 +56,7 @@ public class ProductController {
 			return result;
 			
 			
-			
+			// 상품 추가
 		}else if(serviceNo==3) {
 			String sid = (String)param.get("sid");
 			Integer product_code = (Integer)param.get("product_code");
@@ -82,6 +84,7 @@ public class ProductController {
 			result.put("result", rValue);
 			return result;
 		
+			// 상품 수정
 		}else if(serviceNo==4) {
 			String sid = (String)param.get("sid");
 			Integer product_code = (Integer)param.get("product_code");
@@ -110,6 +113,7 @@ public class ProductController {
 			result.put("result", rValue);
 			return result;
 			
+			// 상품 삭제
 		}else if(serviceNo==5) {
 			String sid= (String)param.get("sid");
 			Integer product_code = (Integer)param.get("product_code");

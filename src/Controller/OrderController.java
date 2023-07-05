@@ -1,7 +1,10 @@
 package Controller;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
 import Domain.Common.Service.OrderService;
 
@@ -33,11 +36,21 @@ public class OrderController {
 				return null;
 			}
 			// 3 서비스 실행(서비스모듈작업 이후 처리)
+			List<OrderDto> list = null;
+			try {
+				list =  service.getOrder(sid);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// service.getAllLend(sid);
 			
 			// 4 View로 전달
-			System.out.println("Order_select Block!");
-	}	else if (serviceNo == 2) {
+			System.out.println("Order_select Block!");;
+			Map<String, Object> result = new HashMap();
+			result.put("result", list);
+			return result;
+	}	else if (serviceNo == 3) {
 		// 1 파라미터 추출
 		String order_id = (String) param.get("order_id");
 		String member_id = (String) param.get("member_id");
@@ -74,7 +87,7 @@ public class OrderController {
 //		result.put("result", rValue);
 //		return result;
 	
-} else if (serviceNo == 3) {
+} else if (serviceNo == 4) {
 	// 1 파라미터 추출
 	String order_id = (String) param.get("order_id");
 	String member_id = (String) param.get("member_id");
@@ -95,7 +108,7 @@ public class OrderController {
 			// 3 서비스 실행
 			OrderDto dto = new OrderDto(order_id,member_id,product_code,product_name,adr_addr,odr_amount,null,price);
 			System.out.println("Dto : " + dto);
-} else if (serviceNo == 4) {
+} else if (serviceNo == 5) {
 	// 1 파라미터 추출
 	String order_id = (String) param.get("order_id");
 	String member_id = (String) param.get("member_id");

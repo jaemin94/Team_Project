@@ -133,38 +133,20 @@ public class MemberService {
 
 	}
 	
+
 	//역할반환함수 
-//	public String getRole(Map<String, Object> login_sid, String id) {
-//		MemberDto dbDto = dao.select(id);
-//	    if (dbDto != null) {
-//	        String sid = UUID.randomUUID().toString();
-//	        Session session = new Session(sid, dbDto.getId(), dbDto.getRole(), dbDto.getAdr_addr());
-//	        sessionMap.put(sid, session);
-//	        System.out.println("getRole's Session: " + session);
-//	        return session.getRole();
-//	    }
-//	    return null;
-//	}
-	//역할반환함수 
-	public String getRole(String id) {
-		  MemberDto dbDto = dao.select(id);
-		    if (dbDto != null) {
-		        String sid = UUID.randomUUID().toString();
-		        Session session = new Session(sid, dbDto.getId(), dbDto.getRole(), dbDto.getAdr_addr());
-		        sessionMap.put(sid, session);
-		        System.out.println("getRole's Session: " + session);
-		        return session.getRole();
-		    }
-		    return null;
+public String getRole(String sid) {
+		
+		System.out.println("Flag!! MemberService149: " + sid);
+		System.out.println("Flag!! MemberService150: " + sessionMap.get(sid));
+		Session session = sessionMap.get(sid);
+		System.out.println("getRole's Session : " + session);
+		if(session!=null) {
+			return session.getRole();
+			}
+		
+		return null;
 	}
 
-//	public String getRole(Map<String, Object> login_sid) {
-//		 String sid = (String) login_sid.get("sid");
-//		    Session session = sessionMap.get(sid);
-//		    if (session != null) {
-//		        System.out.println("getRole's Session: " + session);
-//		        return session.getRole();
-//		    }
-//		    return null; // or handle the case when the session is not found
-//}
+
 }
