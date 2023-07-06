@@ -150,9 +150,9 @@ public class TUI {
 			System.out.println("관리자메뉴");
 			System.out.println("--------------------------");
 			System.out.println("[상품]			[회원]			[주문]");
-			System.out.println("1 상품조회하기		5 				6 주문 전체조회"	);
+			System.out.println("1 상품조회하기		5 회원전체조회 		6 주문 전체조회"	);
 			System.out.println("2 상품추가하기					    7 주문 단건조회"	);
-			System.out.println("3 상품수정하기		 				8 			"	);
+			System.out.println("3 상품수정하기		 				8 주문 완료삭제	"	);
 			System.out.println("4 상품삭제하기									"	);	
 			System.out.println("9  ");
 			System.out.println("10 ");
@@ -209,7 +209,7 @@ public class TUI {
 				break;
 				
 			case 4 :
-				System.out.print("상품코드 상품명 재고량 상품가격 입력 : ");
+				System.out.print("삭제할 상품코드 입력 : ");
 				int product_code2 = sc.nextInt();
 
 				
@@ -225,7 +225,9 @@ public class TUI {
 				break;
 				
 			case 5 :
-				Map<String, Object> result5 = controller.execute("/member", 1, null);
+				Map<String,Object> param4 = new HashMap();
+				param4.put("sid", sid);
+				Map<String, Object> result5 = controller.execute("/member", 1, param4);
 				List<MemberDto> list1 = (List<MemberDto>) result5.get("result");
 				list1.stream().forEach((dto) -> {System.out.println(dto);});
 			
@@ -248,6 +250,22 @@ public class TUI {
 				Map<String, Object> result7 = controller.execute("/order", 2, param3);
 				OrderDto dto = (OrderDto) result7.get("result");
 				System.out.println(dto.toString());
+				break;
+				
+			case 8 :
+				System.out.print("삭제할 주문번호 입력 : ");
+				String order_id1 = sc.next();
+
+				
+				Map<String,Object> param5 = new HashMap();
+				
+				param5.put("order_id1", order_id1);
+				param5.put("sid", sid);
+				
+				Map<String,Object> result8 = controller.execute("/order",5,param5);
+				Boolean isDelete = (Boolean)result8.get("result");
+				if(isDelete==true)
+					System.out.println("[INFO] 상품 삭제 완료!");
 				break;
 				
 			case 10 : 

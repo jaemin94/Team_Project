@@ -163,11 +163,11 @@ public class OrderDao {
 	
 
 	
-	public int delete(String id)
+	public int delete(String order_id)
 	{
 		try {
 			pstmt = conn.prepareStatement("delete from tbl_order where order_id = ?");
-			pstmt.setString(1, id);
+			pstmt.setString(1, order_id);
 			int result = pstmt.executeUpdate();
 			pstmt.close();
 			return result;

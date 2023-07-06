@@ -39,64 +39,7 @@ public class OrderService {
 	}
 	
 		
-//		public boolean reqOrder(String sid, String id,int product_code, int odr_amount) throws Exception {
-//			MemberDto mdto = new MemberDto();
-//			ProdDto pdto = new ProdDto();
-//			OrderDto odto = new OrderDto();
-//			
-//			String role = memberService.getRole(sid);
-//			if (!role.equals("Role_Member")) {
-//				System.out.println("[WARN] 관리자만 로그인 할 수 있습니다.");
-//				return false;
-//			}
-//			
-//		    mdto = memberService.memberSearchOne("Role_user", id);
-//		    if (mdto != null) {
-//		    	pdto = productService.reqProd(product_code); 
-//		        if (pdto != null) {
-//		        	
-//		        	
-//		            int currentStock = pdto.getAmount();
-//		            
-//		           
-//		            	if (currentStock >= odr_amount) {
-//		                int updatedStock = currentStock - odr_amount;
-//		                pdto.setAmount(updatedStock);
-//		                productService.updateProdAmount(product_code, pdto);
-//		                int pp = odr_amount * pdto.getProd_price();
-//		                
-//		                String oid = UUID.randomUUID().toString();
-//		                odto.setOrder_id(oid); // 주문 ID 설정
-//		                odto.setProduct_code(product_code);
-//		                oDao.insert(new OrderDto("1",mdto.getId(),pdto.getProduct_code(),pdto.getProduct_name(),mdto.getAdr_addr(),odr_amount,null,pp));
-//            	
-//		                System.out.println("[INFO] 주문완료");		                
-//		                return true;	            
-//		            }		                         
-//		            else 
-//		            {
-//		                System.out.println("[INFO] 주문 수량이 재고보다 많습니다.");
-//		                return false;
-//		            }
-//		    }
-//		       else 
-//		       {
-//		            System.out.println("[INFO] 해당 상품이 존재하지 않습니다.");
-//		            return false;
-//		       }
-//		  
-//		    }
-//		    	else
-//		    {
-//		        System.out.println("[INFO] 해당 회원이 존재하지 않습니다.");
-//		        return false;
-//		    }
-//}
-//	
-		
-		// ---------------------------------------------------------------- 테스트 ------------------------------------------
-		
-		// -------------------------------------------------------------------------------------- 민영씨 코드
+//		
 		public boolean reqOrder(String id, int product_code, int odr_amount) throws Exception {
 		    MemberDto mdto = new MemberDto();
 		    ProdDto pdto = new ProdDto();
@@ -170,10 +113,7 @@ public class OrderService {
 		}
 		
 		
-		//-----------------------------------------------------------------------------------------
-		
-		
-		// ---------------------------------------------------------------- 테스트 ------------------------------------------		
+
 		    
 		
 		// 주문 전체확인
@@ -227,16 +167,16 @@ public class OrderService {
 
 	
 	// 주문 완료 및 취소 처리
-	public boolean removeOrder(String order_id, String login_sid)
+	public boolean removeOrder(String order_id)
 	{
-		System.out.println("BookService's removeOrder()");
-		String role = memberService.getRole(login_sid);
-		if(role.equals("Role_Member"))
-		{
+		System.out.println("OrderService's removeOrder()");
+//		String role = memberService.getRole(login_sid);
+//		if(role.equals("Role_Member"))
+//		{
 		int result = oDao.delete(order_id);
-		if(result > 0)
-			return true;
-		}
+//		if(result > 0)
+//			return true;
+//		}
 		return false;
 	}
 

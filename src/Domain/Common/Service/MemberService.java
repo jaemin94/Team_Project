@@ -42,7 +42,7 @@ public class MemberService {
 		return false;
 	}
 	
-	//회원 조회하기(전체) - 사서
+	
 	public List<MemberDto> memberSearch(String sid) throws Exception{
 		
 		String role = this.getRole(sid);
@@ -51,7 +51,7 @@ public class MemberService {
 			return dao.select();
 		return null;
 	}
-	//회원 조회하기(한명) - 사서
+	
 	public MemberDto memberSearchOne(String role,String id) throws Exception{
 		
 //            if(role.equals("Role_user"))		
@@ -61,7 +61,7 @@ public class MemberService {
 	}	
 	
 	
-	//회원 조회하기(한 회원) - 로그인한 회원만 
+	 
 	public MemberDto memberSearch(String id,String sid) throws Exception {
 		Session session = sessionMap.get(sid);
 		

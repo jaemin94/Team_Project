@@ -1,9 +1,11 @@
 package Tests.ServiceTests;
 
+import java.util.Map;
+
 import org.junit.Test;
 
-import Domain.Common.Dao.OrderDao;
 import Domain.Common.Dto.OrderDto;
+import Domain.Common.Service.MemberService;
 import Domain.Common.Service.OrderService;
 
 public class ServiceTests {
@@ -25,9 +27,13 @@ public class ServiceTests {
 	@Test
 	public void test() throws Exception {
 		OrderService service = new OrderService();
-		OrderDto dto = service.getOrder("Role_Member", "1");
-		System.out.println(dto.toString());
+		MemberService memberService = new MemberService();
 		
+		String order_id = "f1b355c3-9413-4af8-b012-7e1f13c75105";
+
+
+		
+		boolean isOrdered = service.removeOrder("150");
 		
 		
 	}
