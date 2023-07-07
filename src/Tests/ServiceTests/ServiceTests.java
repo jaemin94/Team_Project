@@ -29,11 +29,18 @@ public class ServiceTests {
 		OrderService service = new OrderService();
 		MemberService memberService = new MemberService();
 		
-		String order_id = "f1b355c3-9413-4af8-b012-7e1f13c75105";
+		String order_id = "15d0";
+		Map<String, Object> login_sid = memberService.login("member1", "1234");
+	    System.out.println("sid: " + login_sid);
 
-
+	   
+	    String sid = (String) login_sid.get("sid");
+	    String role = memberService.getRole(sid);
+	    boolean isOrdered = service.removeOrder(role,order_id);
+	    
+	    System.out.println("Role: " + role);
+//		boolean isOrdered = service.removeOrder(role,order_id);
 		
-		boolean isOrdered = service.removeOrder("150");
 		
 		
 	}

@@ -118,13 +118,14 @@ private OrderService service;
 	// 1 파라미터 추출
 //	String sid= (String)param.get("sid");
 	String order_id1 = (String)param.get("order_id1");
-	if(order_id1==null) {
+	String role=(String) param.get("role");
+	if(order_id1==null || role == null) {
 		System.out.println("[ERROR]Data Validation Check Error");
 		return null;
 	}
 	Boolean rValue = false;
 	try {
-		rValue=service.removeOrder(order_id1);
+		rValue=service.removeOrder(role,order_id1);
 	} catch (Exception e) {
 		
 		e.printStackTrace();

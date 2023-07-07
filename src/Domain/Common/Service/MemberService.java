@@ -52,12 +52,13 @@ public class MemberService {
 		return null;
 	}
 	
-	public MemberDto memberSearchOne(String role,String id) throws Exception{
+	public MemberDto memberSearchOne(String sid,String id) throws Exception{
 		
-//            if(role.equals("Role_user"))		
+			String role = sid;
+            if(role.equals("Role_user"))		
 			return dao.select(id);
 		
-//		return null;
+		return null;
 	}	
 	
 	
@@ -121,9 +122,9 @@ public class MemberService {
 		
 		//3 세션에 대한정보를 클라이언트가 접근할수 있도록하는 세션구별Id(Session Cookie) 전달
 		Map<String,Object> result = new HashMap();
-		
-		result.put("role", dbDto.getRole());
 		result.put("sid", sid);
+		result.put("role", dbDto.getRole());
+		
 		return result;
 	}
 	
@@ -146,7 +147,7 @@ public String getRole(String sid) {
 			}
 		
 		return null;
+	
 	}
-
 
 }

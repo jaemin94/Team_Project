@@ -151,8 +151,8 @@ public class TUI {
 			System.out.println("--------------------------");
 			System.out.println("[상품]			[회원]			[주문]");
 			System.out.println("1 상품조회하기		5 회원전체조회 		6 주문 전체조회"	);
-			System.out.println("2 상품추가하기					    7 주문 단건조회"	);
-			System.out.println("3 상품수정하기		 				8 주문 완료삭제	"	);
+			System.out.println("2 상품추가하기					7 주문 단건조회"		);
+			System.out.println("3 상품수정하기		 			8 주문 완료삭제	"		);
 			System.out.println("4 상품삭제하기									"	);	
 			System.out.println("9  ");
 			System.out.println("10 ");
@@ -260,7 +260,7 @@ public class TUI {
 				Map<String,Object> param5 = new HashMap();
 				
 				param5.put("order_id1", order_id1);
-				param5.put("sid", sid);
+				param5.put("role", role);
 				
 				Map<String,Object> result8 = controller.execute("/order",5,param5);
 				Boolean isDelete = (Boolean)result8.get("result");
@@ -269,6 +269,8 @@ public class TUI {
 				break;
 				
 			case 10 : 
+			
+				
 				return ;
 				
 			}

@@ -1,6 +1,7 @@
 package Domain.Common.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import Domain.Common.Dao.MemberDao;
@@ -9,6 +10,7 @@ import Domain.Common.Dao.ProdDao;
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
 import Domain.Common.Dto.ProdDto;
+import Domain.Common.Service.Auth.Session;
 
 public class OrderService {
 	
@@ -18,6 +20,7 @@ public class OrderService {
 	private MemberDao mDao;
 	private ProdDao pDao;
 	private static OrderService instance;
+	
 	
 	public static OrderService getInstance()
 	{
@@ -136,7 +139,8 @@ public class OrderService {
 	{
 		System.out.println("OrderService's addOrder()");
 		
-		String role = memberService.getRole(login_sid);
+//		String role = memberService.getRole(login_sid);
+		String role = login_sid;
 		
 		if(role.equals("Role_Member"))
 		{
@@ -153,7 +157,9 @@ public class OrderService {
 	{
 		System.out.println("OrderService's updateOrder()");
 		
-		String role = memberService.getRole(login_sid);
+		
+//		String role = memberService.getRole(login_sid);
+		String role = login_sid;
 		
 		if(role.equals("Role_Member"))
 		{
@@ -167,16 +173,18 @@ public class OrderService {
 
 	
 	// 주문 완료 및 취소 처리
-	public boolean removeOrder(String order_id)
+	public boolean removeOrder(String sid,String order_id)
 	{
 		System.out.println("OrderService's removeOrder()");
-//		String role = memberService.getRole(login_sid);
-//		if(role.equals("Role_Member"))
-//		{
+//		String role = memberService.getRole(sid);
+		// sid 값을 받아 롤을 가져오는 작업
+		String role = sid;
+		if(role.equals("Role_Member"))
+		{
 		int result = oDao.delete(order_id);
-//		if(result > 0)
-//			return true;
-//		}
+		if(result > 0)
+			return true;
+		}
 		return false;
 	}
 
