@@ -4,9 +4,9 @@ import java.util.Map;
 
 import org.junit.Test;
 
-import Domain.Common.Dto.OrderDto;
+import Domain.Common.Dto.ProdDto;
 import Domain.Common.Service.MemberService;
-import Domain.Common.Service.OrderService;
+import Domain.Common.Service.ProductService;
 
 public class ServiceTests {
 
@@ -24,19 +24,39 @@ public class ServiceTests {
 //	    boolean isOrderSuccessful = service.reqOrder("user1", "user1",2, 5);
 //	    System.out.println("주문 성공 여부: " + isOrderSuccessful);
 //	}
+//	@Test
+//	public void test() throws Exception {
+//		OrderService service = new OrderService();
+//		MemberServiceImpl memberService = new MemberServiceImpl();
+//		
+//		String order_id = "200";
+//		Map<String, Object> login_sid = memberService.login("member1", "1234");
+//	    System.out.println("sid: " + login_sid);
+//
+//	   
+//	    String sid = (String) login_sid.get("sid");
+//	    String role = memberService.getRole(sid);
+//	    boolean isOrdered = service.removeOrder(role,order_id);
+//	    
+//	    System.out.println("Role: " + role);
+////		boolean isOrdered = service.removeOrder(role,order_id);
+//		
+//		
+//		
+//	}
 	@Test
 	public void test() throws Exception {
-		OrderService service = new OrderService();
+		ProductService pService = new ProductService();
 		MemberService memberService = new MemberService();
 		
-		String order_id = "15d0";
+		
 		Map<String, Object> login_sid = memberService.login("member1", "1234");
 	    System.out.println("sid: " + login_sid);
-
+	    
 	   
 	    String sid = (String) login_sid.get("sid");
 	    String role = memberService.getRole(sid);
-	    boolean isOrdered = service.removeOrder(role,order_id);
+	    pService.addProd(role,new ProdDto(5,"이것이 리눅스다",100,50));
 	    
 	    System.out.println("Role: " + role);
 //		boolean isOrdered = service.removeOrder(role,order_id);

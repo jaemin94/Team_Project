@@ -42,7 +42,7 @@ public class ProductService {
 	//+ addProd(String sid, int product_code, String product_name): boolean
 	public boolean addProd(String id, ProdDto dto) throws Exception{
 		System.out.println("ProdService's addProd()");
-		String role = memberService.getRole(id);
+		String role = id;
 		if(role.equals("Role_Member")) {
 			int result = dao.insert(dto);
 			if(result >0)

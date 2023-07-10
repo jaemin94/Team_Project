@@ -10,7 +10,7 @@ import Domain.Common.Dto.ProdDto;
 import Domain.Common.Service.OrderService;
 import Domain.Common.Service.ProductService;
 
-public class OrderController {
+public class OrderController implements SubController {
 
 	
 	

@@ -9,7 +9,7 @@ import Domain.Common.Service.ProductService;
 
 
 
-public class ProductController {
+public class ProductController implements SubController{
 
 	
 	private ProductService service;

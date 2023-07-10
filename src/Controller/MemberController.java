@@ -7,7 +7,7 @@ import java.util.Map;
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Service.MemberService;
 
-public class MemberController {
+public class MemberController implements SubController{
 
 
 	 private MemberService service;

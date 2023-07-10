@@ -158,8 +158,8 @@ public class OrderService {
 		System.out.println("OrderService's updateOrder()");
 		
 		
-//		String role = memberService.getRole(login_sid);
-		String role = login_sid;
+		String role = memberService.getRole(login_sid);
+//		String role = login_sid;
 		
 		if(role.equals("Role_Member"))
 		{
