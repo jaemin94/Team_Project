@@ -159,7 +159,7 @@ public class OrderService {
 		
 		
 		String role = memberService.getRole(login_sid);
-//		String role = login_sid;
+		String role = login_sid;
 		
 		if(role.equals("Role_Member"))
 		{
