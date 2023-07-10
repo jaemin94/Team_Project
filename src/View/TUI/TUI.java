@@ -68,7 +68,7 @@ public class TUI {
 		param.put("id", id);
 		param.put("pw", pw);
 		
-		Map<String,Object> result = controller.execute("/member", 5, param);
+		Map<String,Object> result = controller.execute("/member", 6, param);
 		String sid = (String)result.get("sid");
 		String role = (String)result.get("role");
 		if(sid != null)
@@ -268,13 +268,41 @@ public class TUI {
 					System.out.println("[INFO] 상품 삭제 완료!");
 				break;
 				
-			case 10 : 
-			
+			case 16 : 
+				System.out.print("변경수량 변경가격 주문번호 회원번호 입력 : ");
 				
-				return ;
+				int odr_amount = sc.nextInt();
+				int price = sc.nextInt();
+				String update_order_id= sc.next();
+				String update_member_id = sc.next();
+				
+				Map<String,Object> param16 = new HashMap();
+//				pstmt.setString(1, dto.getMember_id());
+//				pstmt.setInt(2, dto.getOdr_amount());
+//				pstmt.setInt(3, dto.getPrice());
+//				pstmt.setString(4, dto.getOrder_id());
+				param16.put("sid", sid);
+				param16.put("order_id", update_order_id);
+				param16.put("member_id", update_member_id);
+				param16.put("odr_amount", odr_amount);
+				param16.put("price", price);
+				
+				
+				Map<String, Object> result16 = controller.execute("/order", 4, param16);
+				Boolean dto1 = (Boolean) result16.get("result");
+				System.out.println(dto1.toString());
+				
+				
+				break;
+
+				
+				
+				
+				
+				
 				
 			}
-			
+			return ;
 		}
 	}
 	

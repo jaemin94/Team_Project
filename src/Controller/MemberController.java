@@ -113,7 +113,7 @@ public class MemberController implements SubController{
 			String sid = (String) param.get("sid");
 
 			// 2 입력값 검증
-			if (id == null || pw == null) {
+			if (id == null || pw == null ) {
 				System.out.println("[ERROR] Data Validation Check Error!");
 				return null;
 			}

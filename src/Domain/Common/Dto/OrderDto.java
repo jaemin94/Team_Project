@@ -66,6 +66,7 @@ public class OrderDto {
 		return product_code;
 	}
 
+	
 	public void setProduct_code(int product_code) {
 		this.product_code = product_code;
 	}

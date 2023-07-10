@@ -4,18 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
-import Domain.Common.Dto.ProdDto;
 import Domain.Common.Service.OrderService;
 import Domain.Common.Service.OrderServiceImpl;
-import Domain.Common.Service.ProductServiceImpl;
+import Domain.Common.Service.Auth.Session;
 
 public class OrderController implements SubController {
 
 	
-	
-private OrderService service;
+	private Session session;
+	private OrderService service;
 	
 	public OrderController() {
 		service = OrderServiceImpl.getInstance();
@@ -24,6 +22,7 @@ private OrderService service;
 	// 1 Select , 2 Insert , 3 Update , 4 Delete
 	public Map<String,Object> execute (int serviceNo,Map<String,Object> param){
 		// 주문 전체 조회
+
 		if (serviceNo == 1) {
 			List<OrderDto> list = null;
 			try {
@@ -98,23 +97,43 @@ private OrderService service;
 	// 1 파라미터 추출
 	String order_id = (String) param.get("order_id");
 	String member_id = (String) param.get("member_id");
-	Integer product_code = (Integer) param.get("product_code");
-	String product_name = (String) param.get("product_name");
-	String adr_addr = (String) param.get("adr_addr");
+//	Integer product_code = (Integer) param.get("product_code");
+//	String product_name = (String) param.get("product_name");
+//	String adr_addr = (String) param.get("adr_addr");
 	Integer odr_amount = (Integer) param.get("odr_amount");
 	Integer price = (Integer) param.get("price");
 	String sid=(String) param.get("sid");
-	
+//	pstmt.setString(1, dto.getMember_id());
+//	pstmt.setInt(2, dto.getOdr_amount());
+//	pstmt.setInt(3, dto.getPrice());
+//	pstmt.setString(4, dto.getOrder_id());
 	// 2 입력값 검증
-			if(order_id==null||member_id==null||product_code==null||product_name==null||odr_amount==null||price==null||sid==null) {
+			if(order_id==null||member_id==null||odr_amount==null||price==null||sid==null) {
 				System.out.println("[ERROR]Data Validation Check Error");
 				return null;
 			}
 			
 			// 3 서비스 실행
-			OrderDto dto = new OrderDto(order_id,member_id,product_code,product_name,adr_addr,odr_amount,null,price);
-			System.out.println("Dto : " + dto);
 			
+			
+			OrderDto dto = new OrderDto(order_id,member_id,0,null,null,odr_amount,null,price);
+			System.out.println("Dto : " + dto);
+		
+			Boolean rValue=false;
+			try {
+				rValue = service.updateOrder(dto,sid);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			// 4 View로 전달
+			System.out.println("Order_insert Block!");
+			Map<String,Object> result = new HashMap();
+			result.put("result", rValue);
+			return result;
+		
 			
 			// 주문 삭제
 } else if (serviceNo == 5) {

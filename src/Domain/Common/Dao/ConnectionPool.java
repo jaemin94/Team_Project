@@ -11,9 +11,9 @@ public abstract class ConnectionPool {
 	private String pw;
 	private String url;
 	
-	private String userid;
-	private String prodid;
-	private String useraddr;
+//	private String userid;
+//	private String prodid;
+//	private String useraddr;
 	
 	
 	protected static Connection conn;

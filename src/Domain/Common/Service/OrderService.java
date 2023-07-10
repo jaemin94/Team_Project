@@ -13,15 +13,15 @@ public interface OrderService {
 	List<OrderDto> getOrder() throws Exception;
 
 	// 건별 주문 확인
-	OrderDto getOrder(String order_id);
+	OrderDto getOrder(String order_id) throws Exception; ;
 
 	// 주문하기
-	boolean addOrder(OrderDto dto, String login_sid);
+	boolean addOrder(OrderDto dto, String login_sid)throws Exception; ;
 
 	// 주문정보 수정
-	boolean updateOrder(OrderDto dto, String login_sid);
+	boolean updateOrder(OrderDto dto, String login_sid)throws Exception; ;
 
 	// 주문 완료 및 취소 처리
-	boolean removeOrder(String sid, String order_id);
+	boolean removeOrder(String sid, String order_id)throws Exception; ;
 
 }

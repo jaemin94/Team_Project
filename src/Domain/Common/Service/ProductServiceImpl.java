@@ -46,6 +46,7 @@ public class ProductServiceImpl implements ProductService {
 		if(role.equals("Role_Member")) {
 			int result = dao.insert(dto);
 			if(result >0)
+			
 				return true;
 		}
 		return false;
@@ -56,9 +57,12 @@ public class ProductServiceImpl implements ProductService {
 		System.out.println("Product Services's updateProd()");
 //		String role = memberService.getRole(id);
 		String role = id;
+		System.out.println(role);
 		if(role.equals("Role_Member")) {
+			
 			int result = dao.update(dto);
 			if(result>0)
+				
 				return true;
 		}
 		return false;

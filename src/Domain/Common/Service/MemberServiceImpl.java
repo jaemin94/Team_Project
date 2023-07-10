@@ -17,7 +17,7 @@ public class MemberServiceImpl implements MemberService {
 	//세션정보저장
 	public Map<String,Session> sessionMap;
 	
-	private MemberDao dao;
+	private MemberDao dao; 
 
 	
 	

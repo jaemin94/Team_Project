@@ -10,8 +10,8 @@ import Domain.Common.Dto.OrderDto;
 
 public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 	
-	private static OrderDao instance;
-	public static OrderDao getInstance() {
+	private static OrderDaoimpl instance;
+	public static OrderDaoimpl getInstance() {
 		if(instance==null)
 			instance=new OrderDaoimpl();
 		return instance;
@@ -118,20 +118,32 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 	// 주문수정
 	public int update(OrderDto dto)
 	{
+		
 		try {
-			pstmt = conn.prepareStatement("update tbl_order set member_id = ?, odr_amount = ? , price = ? where  order_id =?");
-			pstmt.setString(1, dto.getMember_id());
-			pstmt.setInt(2, dto.getOdr_amount());
-			pstmt.setInt(3, dto.getPrice());
-			pstmt.setString(4, dto.getOrder_id());
+			
+			
+			pstmt = conn.prepareStatement("update tbl_order set odr_amount = ?,price=?  where order_id = ? and member_id = ?");
+			pstmt.setInt(1, dto.getOdr_amount());
+			pstmt.setInt(2, dto.getPrice());
+			pstmt.setString(3, dto.getOrder_id());
+			pstmt.setString(4, dto.getMember_id());
+			
+//			
+			
 			int result = pstmt.executeUpdate();
 			pstmt.close();
 			return result;
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
+			
 		}
-		return 0;
+		
+		return -1;
+		
 	}
 	
 

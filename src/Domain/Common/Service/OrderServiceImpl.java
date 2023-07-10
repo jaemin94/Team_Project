@@ -164,12 +164,15 @@ public class OrderServiceImpl implements OrderService {
 //		String role = memberService.getRole(login_sid);
 		String role = login_sid;
 		
-		if(role.equals("Role_Member"))
+		if(!role.equals("Role_Member"))
 		{
+			
 		int result = oDao.update(dto);
 		if(result > 0)
 			return true;
+		
 		}
+		
 		return false;
 	}
 	
