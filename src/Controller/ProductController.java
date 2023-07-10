@@ -6,16 +6,17 @@ import java.util.Map;
 
 import Domain.Common.Dto.ProdDto;
 import Domain.Common.Service.ProductService;
+import Domain.Common.Service.ProductServiceImpl;
 
 
 
-public class ProductController {
+public class ProductController implements SubController{
 
 	
 	private ProductService service;
 	
 	public ProductController() {
-		service = ProductService.getInstance();
+		service = ProductServiceImpl.getInstance();
 	}
 
 	public Map<String,Object> execute (int serviceNo, Map<String,Object>param){

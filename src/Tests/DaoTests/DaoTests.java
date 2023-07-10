@@ -6,8 +6,9 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
 
-import Domain.Common.Dao.MemberDao;
+import Domain.Common.Dao.MemberDaoimpl;
 import Domain.Common.Dao.OrderDao;
+import Domain.Common.Dao.OrderDaoimpl;
 
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
@@ -27,7 +28,7 @@ public class DaoTests {
 
 	@Test
 	public void OrderDaoTests1() {
-		OrderDao dao = new OrderDao();
+		OrderDao dao = new OrderDaoimpl();
 		// 객체연결 여부 확인 TEST 함수
 		assertNotNull(dao);
 		
