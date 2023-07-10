@@ -12,17 +12,8 @@ import java.util.List;
 import Domain.Common.Dto.OrderDto;
 import Domain.Common.Dto.ProdDto;
 
-public class ProdDao {
+public class ProdDao extends ConnectionPool{
 
-	private String id;
-	private String pw;
-	private String url;
-	
-	
-	
-	private Connection conn;
-	private PreparedStatement pstmt;
-	private ResultSet rs;
 	
 	private static ProdDao instance;
 	public static ProdDao getInstance()
@@ -36,19 +27,7 @@ public class ProdDao {
 	
 	public ProdDao()
 	{
-		id = "root";
-		pw = "1234";
-		url = "jdbc:mysql://localhost:3306/shoppingdb";
-
-		try 
-		{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection(url, id, pw);
-		} 
-		catch (Exception ex) 
-		{
-			ex.printStackTrace();
-		}
+		super();
 	}
 	
 	public List<ProdDto> select()

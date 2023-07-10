@@ -27,9 +27,9 @@ public class ServiceTests {
 //	@Test
 //	public void test() throws Exception {
 //		OrderService service = new OrderService();
-//		MemberServiceImpl memberService = new MemberServiceImpl();
+//		MemberService memberService = new MemberService();
 //		
-//		String order_id = "200";
+//		String order_id = "asd";
 //		Map<String, Object> login_sid = memberService.login("member1", "1234");
 //	    System.out.println("sid: " + login_sid);
 //
@@ -39,10 +39,10 @@ public class ServiceTests {
 //	    boolean isOrdered = service.removeOrder(role,order_id);
 //	    
 //	    System.out.println("Role: " + role);
-////		boolean isOrdered = service.removeOrder(role,order_id);
-//		
-//		
-//		
+//		boolean isOrdered = service.removeOrder(role,order_id);
+		
+		
+		
 //	}
 	@Test
 	public void test() throws Exception {
@@ -56,10 +56,10 @@ public class ServiceTests {
 	   
 	    String sid = (String) login_sid.get("sid");
 	    String role = memberService.getRole(sid);
-	    pService.addProd(role,new ProdDto(5,"이것이 리눅스다",100,50));
+	    pService.removeProd(role,5);
 	    
 	    System.out.println("Role: " + role);
-//		boolean isOrdered = service.removeOrder(role,order_id);
+//		boolean isOrdered = pService.removeOrder(role,order_id);
 		
 		
 		

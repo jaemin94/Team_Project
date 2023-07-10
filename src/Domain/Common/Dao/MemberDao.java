@@ -11,15 +11,9 @@ import java.util.List;
 
 import Domain.Common.Dto.MemberDto;
 
-public class MemberDao {
+public class MemberDao extends ConnectionPool{
 
-	private String id;
-	private String pw;
-	private String url;
-	
-	private Connection conn;
-	private PreparedStatement pstmt;
-	private ResultSet rs;
+
 	
 	private static MemberDao instance;
 	public static MemberDao getInstance() {
@@ -30,19 +24,7 @@ public class MemberDao {
 	
 	public MemberDao()
 	{
-		id = "root";
-		pw = "1234";
-		url = "jdbc:mysql://localhost:3306/shoppingdb";
-
-		try 
-		{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection(url, id, pw);
-		} 
-		catch (Exception ex) 
-		{
-			ex.printStackTrace();
-		}
+		super();
 	}
 
 	// CRUD

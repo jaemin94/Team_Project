@@ -47,12 +47,12 @@ public class OrderService {
 		    MemberDto mdto = new MemberDto();
 		    ProdDto pdto = new ProdDto();
 		    OrderDto odto = new OrderDto();
-
-		    String role = memberService.getRole(id);
-//		    if (!role.equals("Role_user")) {
-//		        System.out.println("[WARN] 회원만 로그인 할 수 있습니다.");
-//		        return false;
-//		    }
+		    
+		    String role = id;
+		    if (!role.equals("Role_user")) {
+		        System.out.println("[WARN] 회원만 주문 할 수 있습니다.");
+		        return false;
+		    }
 
 		    mdto = memberService.memberSearchOne(role, id);
 		    if (mdto != null) {
@@ -158,7 +158,7 @@ public class OrderService {
 		System.out.println("OrderService's updateOrder()");
 		
 		
-		String role = memberService.getRole(login_sid);
+//		String role = memberService.getRole(login_sid);
 		String role = login_sid;
 		
 		if(role.equals("Role_Member"))

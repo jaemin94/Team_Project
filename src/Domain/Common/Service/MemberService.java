@@ -45,7 +45,7 @@ public class MemberService {
 	
 	public List<MemberDto> memberSearch(String sid) throws Exception{
 		
-		String role = this.getRole(sid);
+		String role = sid;
 		
 		if(role.equals("Role_Member"))		
 			return dao.select();
@@ -54,11 +54,11 @@ public class MemberService {
 	
 	public MemberDto memberSearchOne(String sid,String id) throws Exception{
 		
-//			String role = sid;
-//            if(role.equals("Role_user"))		
+			String role = sid;
+            if(role.equals("Role_user"))		
 			return dao.select(id);
 		
-//		return null;
+		return null;
 	}	
 	
 	

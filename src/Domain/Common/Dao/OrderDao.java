@@ -1,33 +1,14 @@
 package Domain.Common.Dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
 
 
 
-public class OrderDao {
-
-	private String id;
-	private String pw;
-	private String url;
-	
-	private String userid;
-	private String prodid;
-	private String useraddr;
-	
-	
-	private Connection conn;
-	private PreparedStatement pstmt;
-	private ResultSet rs;
+public class OrderDao extends ConnectionPool{
 	
 	private static OrderDao instance;
 	public static OrderDao getInstance() {
@@ -40,19 +21,7 @@ public class OrderDao {
 	
 	public OrderDao()
 	{
-		id = "root";
-		pw = "1234";
-		url = "jdbc:mysql://localhost:3306/shoppingdb";
-
-		try 
-		{
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection(url, id, pw);
-		} 
-		catch (Exception ex) 
-		{
-			ex.printStackTrace();
-		}
+		super();
 	}
 	
 	public List<OrderDto> select()
