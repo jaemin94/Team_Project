@@ -5,15 +5,16 @@ import java.util.List;
 import java.util.Map;
 
 import Domain.Common.Dto.MemberDto;
-import Domain.Common.Service.MemberService;
+import Domain.Common.Service.MemberSerivce;
+import Domain.Common.Service.MemberServiceImpl;
 
 public class MemberController implements SubController{
 
 
-	 private MemberService service;
+	 private MemberSerivce service;
 	 
 	 
-	 public MemberController(){ service = MemberService.getInstance(); }
+	 public MemberController(){ service = MemberServiceImpl.getInstance(); }
 
 
 	// [CRUD]

@@ -265,7 +265,7 @@ public class TUI {
 				Map<String,Object> result8 = controller.execute("/order",5,param5);
 				Boolean isDelete = (Boolean)result8.get("result");
 				if(isDelete==true)
-					System.out.println("[INFO] 상품 삭제 완료!");
+					System.out.println("[INFO] 주문 완료건 삭제 완료!");
 				break;
 				
 			case 10 : 

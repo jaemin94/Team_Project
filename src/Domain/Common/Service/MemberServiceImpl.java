@@ -10,7 +10,7 @@ import Domain.Common.Dao.MemberDao;
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Service.Auth.Session;
 
-public class MemberService {
+public class MemberServiceImpl implements MemberSerivce {
 
 	
 	//세션정보저장
@@ -21,20 +21,21 @@ public class MemberService {
 	
 	
 	//싱글톤
-	private static MemberService instance;
-	public static MemberService getInstance() {
+	private static MemberSerivce instance;
+	public static MemberSerivce getInstance() {
 		if(instance==null)
-			instance = new MemberService();
+			instance = new MemberServiceImpl();
 		return instance;
 	}
 	//
 	
-	public MemberService() {
+	public MemberServiceImpl() {
 		dao=MemberDao.getInstance();
 		sessionMap=new HashMap();
 	}
 	
 	//회원 가입하기
+	@Override
 	public boolean memberJoin(MemberDto dto) throws Exception {
 		int result = dao.insert(dto);
 		if(result>0)
@@ -43,6 +44,7 @@ public class MemberService {
 	}
 	
 	
+	@Override
 	public List<MemberDto> memberSearch(String sid) throws Exception{
 		
 		String role = this.getRole(sid);
@@ -52,6 +54,7 @@ public class MemberService {
 		return null;
 	}
 	
+	@Override
 	public MemberDto memberSearchOne(String sid,String id) throws Exception{
 		
 //			String role = sid;
@@ -63,6 +66,7 @@ public class MemberService {
 	
 	
 	 
+	@Override
 	public MemberDto memberSearch(String id,String sid) throws Exception {
 		Session session = sessionMap.get(sid);
 		
@@ -74,6 +78,7 @@ public class MemberService {
 	
 	
 	//회원 수정하기 -- 본인확인
+	@Override
 	public boolean memberUpdate(MemberDto dto,String sid) throws Exception{
 		
 		Session session = sessionMap.get(sid);
@@ -89,6 +94,7 @@ public class MemberService {
 	}	
 	
 	//회원 삭제하기
+	@Override
 	public boolean memberDelete(String id,String sid) throws Exception{
 		
 		Session session = sessionMap.get(sid);
@@ -104,6 +110,7 @@ public class MemberService {
 	
 	
 	//로그인
+	@Override
 	public Map<String, Object> login(String id, String pw) throws Exception{
 		//1 ID/PW 체크 ->Dao 전달받은 id와 일치하는 정보를 가져와서 Pw일치 확인
 		MemberDto dbDto = dao.select(id);
@@ -129,6 +136,7 @@ public class MemberService {
 	}
 	
 	//로그아웃
+	@Override
 	public void logout(String sid) {
 		sessionMap.remove(sid);
 
@@ -136,6 +144,7 @@ public class MemberService {
 	
 
 	//역할반환함수 
+@Override
 public String getRole(String sid) {
 		
 //		System.out.println("Flag!! MemberService149: " + sid);
