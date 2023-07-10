@@ -8,7 +8,8 @@ import Domain.Common.Dto.MemberDto;
 import Domain.Common.Dto.OrderDto;
 import Domain.Common.Dto.ProdDto;
 import Domain.Common.Service.OrderService;
-import Domain.Common.Service.ProductService;
+import Domain.Common.Service.OrderServiceImpl;
+import Domain.Common.Service.ProductServiceImpl;
 
 public class OrderController implements SubController {
 
@@ -17,7 +18,7 @@ public class OrderController implements SubController {
 private OrderService service;
 	
 	public OrderController() {
-		service = OrderService.getInstance();
+		service = OrderServiceImpl.getInstance();
 	}
 	
 	// 1 Select , 2 Insert , 3 Update , 4 Delete

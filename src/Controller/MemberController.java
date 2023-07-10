@@ -6,6 +6,7 @@ import java.util.Map;
 
 import Domain.Common.Dto.MemberDto;
 import Domain.Common.Service.MemberService;
+import Domain.Common.Service.MemberServiceImpl;
 
 public class MemberController implements SubController{
 
@@ -13,7 +14,7 @@ public class MemberController implements SubController{
 	 private MemberService service;
 	 
 	 
-	 public MemberController(){ service = MemberService.getInstance(); }
+	 public MemberController(){ service = MemberServiceImpl.getInstance(); }
 
 
 	// [CRUD]

@@ -6,7 +6,9 @@ import org.junit.Test;
 
 import Domain.Common.Dto.ProdDto;
 import Domain.Common.Service.MemberService;
+import Domain.Common.Service.MemberServiceImpl;
 import Domain.Common.Service.ProductService;
+import Domain.Common.Service.ProductServiceImpl;
 
 public class ServiceTests {
 
@@ -46,8 +48,8 @@ public class ServiceTests {
 //	}
 	@Test
 	public void test() throws Exception {
-		ProductService pService = new ProductService();
-		MemberService memberService = new MemberService();
+		ProductService pService = new ProductServiceImpl();
+		MemberService memberService = new MemberServiceImpl();
 		
 		
 		Map<String, Object> login_sid = memberService.login("member1", "1234");
