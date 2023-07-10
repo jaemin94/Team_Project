@@ -30,7 +30,7 @@ public class ProdDaoimpl extends ConnectionPool implements ProdDao{
 		super();
 	}
 	
-	@Override
+	// 상품 전체 조회
 	public List<ProdDto> select()
 	{
 		List<ProdDto> list = new ArrayList();
@@ -60,7 +60,7 @@ public class ProdDaoimpl extends ConnectionPool implements ProdDao{
 		return list;	
 	}
 	
-	@Override
+	// 상품 단건 조회
 	public ProdDto select(int product_code)throws Exception{
 		
 		ProdDto dto = null;
@@ -81,7 +81,7 @@ public class ProdDaoimpl extends ConnectionPool implements ProdDao{
 		return dto;
 	}
 	
-	@Override
+	// 상품 추가
 	public int insert(ProdDto dto)
 	{
 		try {
@@ -100,7 +100,7 @@ public class ProdDaoimpl extends ConnectionPool implements ProdDao{
 		return 0;
 	}
 	
-	@Override
+	// 상품 수정
 	public int update(ProdDto dto)
 	{
 		try {
@@ -121,7 +121,7 @@ public class ProdDaoimpl extends ConnectionPool implements ProdDao{
 	
 
 	
-	@Override
+	// 상품 삭제
 	public int delete(int code)
 	{
 		try {

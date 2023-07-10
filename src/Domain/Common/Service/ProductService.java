@@ -23,6 +23,4 @@ public interface ProductService {
 	//+romoveProd(String sid, int product_code) : boolean
 	boolean removeProd(String sid, int product_code) throws Exception;
 
-	int Prod_amount(int amount);
-
 }

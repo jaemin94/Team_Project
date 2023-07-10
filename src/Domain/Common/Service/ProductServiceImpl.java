@@ -10,6 +10,7 @@ import Domain.Common.Dto.ProdDto;
 public class ProductServiceImpl implements ProductService {
 	
 	private ProdDao dao;
+	private MemberService memberService;
 	
 	//singleton
 	private static ProductService instance;
@@ -19,31 +20,26 @@ public class ProductServiceImpl implements ProductService {
 		return instance;
 	}
 	
-	//
-	private MemberService memberService;
 	
 	public ProductServiceImpl() {
 		dao = new ProdDaoimpl();
 		memberService = MemberServiceImpl.getInstance();
 	}
 	
-	//+reqAllProd(String sid) : List<ProdDto>
-	@Override
+	// 상품 전체 조회
 	public List<ProdDto>reqAllProd() throws Exception{
 		System.out.println("Product Service's reqAllProd()");
 		return dao.select();
 	}
 	
 	
-	//+ reqProd(String sid, int product_code) : boolean
-	@Override
+	// 상품 단건 조회
 	public ProdDto reqProd(int product_code) throws Exception{
 		System.out.println("Product Services's reqProd()");
 		return dao.select(product_code);
 	}
 	
-	//+ addProd(String sid, int product_code, String product_name): boolean
-	@Override
+	// 상품 추가하기
 	public boolean addProd(String id, ProdDto dto) throws Exception{
 		System.out.println("ProdService's addProd()");
 		String role = id;
@@ -55,8 +51,7 @@ public class ProductServiceImpl implements ProductService {
 		return false;
 	}
 	
-	//+updateProd(String sid, int prodcuct_code) : boolean
-	@Override
+	// 상품 수정하기
 	public boolean updateProd(String id, ProdDto dto) throws Exception {
 		System.out.println("Product Services's updateProd()");
 //		String role = memberService.getRole(id);
@@ -68,7 +63,8 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return false;
 	}
-	@Override
+	
+	// 상품 주문시 재고 자동 업데이트
 	public boolean updateProdAmount(int product_code, ProdDto dto) throws Exception {
 		System.out.println("Product Services's updateProd()");
 		String id = null;
@@ -83,8 +79,7 @@ public class ProductServiceImpl implements ProductService {
 		return false;
 	}
 	
-	//+romoveProd(String sid, int product_code) : boolean
-	@Override
+	// 상품 삭제하기
 	public boolean removeProd(String sid, int product_code) throws Exception{
 		System.out.println("ProductService's removeProd()");
 //		String role = memberService.getRole(sid);
@@ -95,25 +90,6 @@ public class ProductServiceImpl implements ProductService {
 				return true;
 		}
 		return false;
-	}
-	
-	@Override
-	public int Prod_amount(int amount)
-	{
-		ProdDto pDto = new ProdDto();
-		OrderDto oDto = new OrderDto();
-		amount = 0;
-		
-		if(pDto.getAmount() > oDto.getOdr_amount())
-		{
-			amount = pDto.getAmount() -  oDto.getOdr_amount();
-		}
-		else
-		{
-			System.out.println("재고가 없습니다");
-		}
-		
-		return amount;
 	}
 	
 	

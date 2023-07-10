@@ -24,7 +24,7 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 		super();
 	}
 	
-	@Override
+	// 주문 전체 조회
 	public List<OrderDto> select()
 	{
 		List<OrderDto> list = new ArrayList();
@@ -58,7 +58,7 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 		return list;	
 	}
 	
-	@Override
+	// 주문 단건 조회
 	public OrderDto select(String order_id)
 	{
 		OrderDto dto = null;
@@ -92,7 +92,7 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 		return dto;	
 	}
 	
-	@Override
+	// 주문하기
 	public int insert(OrderDto dto)
 	{
 		try {
@@ -115,7 +115,7 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 		return 0;
 	}
 	
-	@Override
+	// 주문수정
 	public int update(OrderDto dto)
 	{
 		try {
@@ -136,7 +136,7 @@ public class OrderDaoimpl extends ConnectionPool implements OrderDao{
 	
 
 	
-	@Override
+	// 주문삭제
 	public int delete(String order_id)
 	{
 		try {

@@ -28,7 +28,7 @@ public class MemberDaoimpl extends ConnectionPool implements MemberDao{
 	}
 
 	// CRUD
-	@Override
+	// 회원가입
 	public int insert(MemberDto dto)
 	{
 		try
@@ -52,7 +52,7 @@ public class MemberDaoimpl extends ConnectionPool implements MemberDao{
 		return 0;		
 	}
 	
-	@Override
+	// 회원 전체조회
 	public List<MemberDto> select()
 	{
 		List<MemberDto> list = new ArrayList();
@@ -89,7 +89,7 @@ public class MemberDaoimpl extends ConnectionPool implements MemberDao{
 		return list;
 	}
 	
-	@Override
+	// 회원 단건 조회
 	public MemberDto select(String id)
 	{
 		
@@ -123,7 +123,7 @@ public class MemberDaoimpl extends ConnectionPool implements MemberDao{
 		return dto;
 	}
 
-	@Override
+	// 회원수정
 	public int update(MemberDto dto) {
 	    
 	    try {
@@ -146,7 +146,7 @@ public class MemberDaoimpl extends ConnectionPool implements MemberDao{
 
 
 
-	@Override
+	// 회원 삭제
 	public int delete(String id)
 	{
 		try

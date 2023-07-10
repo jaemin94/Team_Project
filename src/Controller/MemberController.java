@@ -21,6 +21,7 @@ public class MemberController implements SubController{
 	// [ 1 Select , 2 Insert , 3 Update , 4 Delete] 5 로그인, 6 로그아웃
 	public Map<String, Object> execute(int serviceNo, Map<String, Object> param) {
 
+		// 회원 전체 조회
 		if (serviceNo == 1) {
 			// 1 파라미터 추출(생략)
 			String sid = (String) param.get("sid");
@@ -41,7 +42,10 @@ public class MemberController implements SubController{
 			result.put("result", list);
 			return result;
 
-		} else if (serviceNo == 2) {
+			// 회원 단건조회
+			
+			// 회원가입
+		} else if (serviceNo == 3) {
 			// 1 파라미터 추출
 			String id = (String) param.get("id");
 			String pw = (String) param.get("pw");
@@ -69,7 +73,8 @@ public class MemberController implements SubController{
 			result.put("result", rValue);
 			return result;
 
-		} else if (serviceNo == 3) {
+			// 회원수정
+		} else if (serviceNo == 4) {
 			// 1 파라미터 추출
 			String id = (String) param.get("id");
 			String pw = (String) param.get("pw");
@@ -100,7 +105,8 @@ public class MemberController implements SubController{
 			result.put("result", rValue);
 			return result;
 
-		} else if (serviceNo == 4) {
+			// 회원 삭제
+		} else if (serviceNo == 5) {
 			// 1 파라미터 추출
 			String id = (String) param.get("id");
 			String pw = (String) param.get("pw");
@@ -127,7 +133,8 @@ public class MemberController implements SubController{
 			result.put("result", rValue);
 			return result;
 
-		} else if (serviceNo == 5) {
+			// 호그인
+		} else if (serviceNo == 6) {
 			String id = (String) param.get("id");
 			String pw = (String) param.get("pw");
 			if (id == null || pw == null) {
@@ -143,10 +150,10 @@ public class MemberController implements SubController{
 				e.printStackTrace();
 			}
 
-			// 4 View로 전달
+			// 4 로그아웃
 			return result;                                                                                     
 
-		} else if (serviceNo == 6) {
+		} else if (serviceNo == 7) {
 
 			String sid = (String) param.get("sid");
 

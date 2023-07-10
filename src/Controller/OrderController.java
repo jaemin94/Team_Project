@@ -23,6 +23,7 @@ private OrderService service;
 	
 	// 1 Select , 2 Insert , 3 Update , 4 Delete
 	public Map<String,Object> execute (int serviceNo,Map<String,Object> param){
+		// 주문 전체 조회
 		if (serviceNo == 1) {
 			List<OrderDto> list = null;
 			try {
@@ -35,7 +36,7 @@ private OrderService service;
 			Map<String,Object>result = new HashMap();
 			result.put("result", list);
 			return result;
-	}
+	}	// 주문 단건 조회
 		else if (serviceNo == 2) {
 			String sid = (String)param.get("sid");
 			String order_id = (String)param.get("order_id");
@@ -56,7 +57,7 @@ private OrderService service;
 			result.put("result", dto);
 			return result;
 		}
-		
+		// 주문하기
 		else if (serviceNo == 3) {
 		// 1 파라미터 추출
 		String order_id = (String) param.get("order_id");
@@ -92,6 +93,7 @@ private OrderService service;
 		result.put("result", rValue);
 		return result;
 	
+		// 주문 수정
 } else if (serviceNo == 4) {
 	// 1 파라미터 추출
 	String order_id = (String) param.get("order_id");

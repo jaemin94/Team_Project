@@ -28,7 +28,7 @@ public class MemberServiceImpl implements MemberService {
 			instance = new MemberServiceImpl();
 		return instance;
 	}
-	//
+	
 	
 	public MemberServiceImpl() {
 		dao=MemberDaoimpl.getInstance();
@@ -36,7 +36,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	//회원 가입하기
-	@Override
+	
 	public boolean memberJoin(MemberDto dto) throws Exception {
 		int result = dao.insert(dto);
 		if(result>0)
@@ -45,7 +45,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	
-	@Override
+	// 회원 전체 조회(관리자)
 	public List<MemberDto> memberSearch(String sid) throws Exception{
 		
 		String role = sid;
@@ -55,7 +55,7 @@ public class MemberServiceImpl implements MemberService {
 		return null;
 	}
 	
-	@Override
+	// 회원 단건 조회(회원)
 	public MemberDto memberSearchOne(String sid,String id) throws Exception{
 		
 			String role = sid;
@@ -67,11 +67,11 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	 
-	@Override
+	// 회원 단건 조회(관리자)
 	public MemberDto memberSearch(String id,String sid) throws Exception {
-		Session session = sessionMap.get(sid);
+		String role = sid;
 		
-		if(session!=null && session.getId().equals(id))
+		if(role.equals("Role_Member"))
 			return dao.select(id);
 		
 		return null;
@@ -79,7 +79,6 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	//회원 수정하기 -- 본인확인
-	@Override
 	public boolean memberUpdate(MemberDto dto,String sid) throws Exception{
 		
 		Session session = sessionMap.get(sid);
@@ -95,7 +94,6 @@ public class MemberServiceImpl implements MemberService {
 	}	
 	
 	//회원 삭제하기
-	@Override
 	public boolean memberDelete(String id,String sid) throws Exception{
 		
 		Session session = sessionMap.get(sid);
@@ -111,7 +109,6 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	//로그인
-	@Override
 	public Map<String, Object> login(String id, String pw) throws Exception{
 		//1 ID/PW 체크 ->Dao 전달받은 id와 일치하는 정보를 가져와서 Pw일치 확인
 		MemberDto dbDto = dao.select(id);
@@ -137,7 +134,6 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	//로그아웃
-	@Override
 	public void logout(String sid) {
 		sessionMap.remove(sid);
 
@@ -145,7 +141,6 @@ public class MemberServiceImpl implements MemberService {
 	
 
 	//역할반환함수 
-@Override
 public String getRole(String sid) {
 		
 //		System.out.println("Flag!! MemberService149: " + sid);

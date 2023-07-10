@@ -45,8 +45,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 		
-//		
-		@Override
+		// 상품 주문하기
 		public boolean reqOrder(String id, int product_code, int odr_amount) throws Exception {
 		    MemberDto mdto = new MemberDto();
 		    ProdDto pdto = new ProdDto();
@@ -124,7 +123,6 @@ public class OrderServiceImpl implements OrderService {
 		    
 		
 		// 주문 전체확인
-	@Override
 	public List<OrderDto> getOrder() throws Exception
 	{
 //		System.out.println("Product Service's reqAllProd()");
@@ -132,7 +130,6 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	// 건별 주문 확인
-	@Override
 	public OrderDto getOrder(String order_id)
 	{
 			
@@ -141,7 +138,6 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	// 주문하기
-	@Override
 	public boolean addOrder(OrderDto dto, String login_sid)
 	{
 		System.out.println("OrderService's addOrder()");
@@ -160,7 +156,6 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	// 주문정보 수정
-	@Override
 	public boolean updateOrder(OrderDto dto, String login_sid)
 	{
 		System.out.println("OrderService's updateOrder()");
