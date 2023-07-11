@@ -40,9 +40,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	// 상품 추가하기
-	public boolean addProd(String id, ProdDto dto) throws Exception{
+	public boolean addProd(String role, ProdDto dto) throws Exception{
 		System.out.println("ProdService's addProd()");
-		String role = id;
+		
 		if(role.equals("Role_Member")) {
 			int result = dao.insert(dto);
 			if(result >0)
@@ -52,10 +52,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	// 상품 수정하기
-	public boolean updateProd(String id, ProdDto dto) throws Exception {
+	public boolean updateProd(String role, ProdDto dto) throws Exception {
 		System.out.println("Product Services's updateProd()");
-//		String role = memberService.getRole(id);
-		String role = id;
 		if(role.equals("Role_Member")) {
 			int result = dao.update(dto);
 			if(result>0)
@@ -66,15 +64,13 @@ public class ProductServiceImpl implements ProductService {
 	
 	// 상품 주문시 재고 자동 업데이트
 	public boolean updateProdAmount(int product_code, ProdDto dto) throws Exception {
-		System.out.println("Product Services's updateProd()");
-		String id = null;
+		System.out.println("Product Services's updateProdAmount()");
 		
-		String role = id;
-		if(role.equals("Role_Member")) {
+
 			int result = dao.update(dto);
 			if(result>0)
 				return true;
-		}
+		
 		
 		return false;
 	}

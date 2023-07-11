@@ -68,6 +68,7 @@ private OrderService service;
 		Integer odr_amount = (Integer) param.get("odr_amount");
 		Integer price = (Integer) param.get("price");
 		String sid=(String) param.get("sid");
+		String role = (String) param.get("role");
 		
 		// 2 입력값 검증
 		if(member_id==null||product_code==null||odr_amount==null) {
@@ -80,7 +81,8 @@ private OrderService service;
 	
 		Boolean rValue=false;
 		try {
-			rValue = service.reqOrder(member_id, product_code,odr_amount);
+//			rValue = service.reqOrder(member_id, product_code,odr_amount);
+			rValue = service.reqOrder(sid, member_id, role, product_code,odr_amount);
 		
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

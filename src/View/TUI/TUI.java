@@ -49,6 +49,8 @@ public class TUI {
 			case 4:
 				System.out.println("프로그램을 종료합니다.");
 				System.exit(-1);
+			default:
+				break;
 			}
 		}
 
@@ -63,32 +65,30 @@ public class TUI {
 		System.out.print("PW : " );
 		String pw = sc.next();
 		
-		// 로그인 성공!!
 		Map<String,Object> param = new HashMap();
 		param.put("id", id);
 		param.put("pw", pw);
 		
 		Map<String,Object> result = controller.execute("/member", 6, param);
+		
+		if(result == null) {
+			return;
+		}
+		
 		String sid = (String)result.get("sid");
 		String role = (String)result.get("role");
+
 		if(sid != null)
 		{
 			this.sid = sid;
 			this.id = id;
 			this.role = role;
 		}
-		
-		
-		System.out.print("Flag!! ");
-		
-		
-		//임의 지울것
 		if(role.equals("Role_Member"))
 			ManagerMenu();
 		else if(role.equals("Role_user"))
 			MemberMenu();
-		else
-			System.out.println("잘못된 접근입니다");
+
 	}
 	
 	public void MemberMenu() {
@@ -114,14 +114,19 @@ public class TUI {
 				result11memb = null;
 				break;
 			case 12:
-				String id = sc.next();
+				System.out.println("--------------------------");
+				System.out.print("상품 코드: ");
 				int product_code = sc.nextInt();
+				System.out.println("상품 수량: ");
 				int odr_amount = sc.nextInt();
 				Map<String,Object> result12memb = new HashMap();
-				result12memb.put("member_id", id);
+				result12memb.put("member_id", this.id);
 				result12memb.put("product_code", product_code);
 				result12memb.put("odr_amount", odr_amount);
 				result12memb.put("price", 0);
+				result12memb.put("sid", this.sid);
+				result12memb.put("role", this.role);
+				
 				
 				Map<String, Object> result12 = controller.execute("/order", 3, result12memb);
 				Boolean isOrdered = (Boolean)result12.get("result");
@@ -148,8 +153,10 @@ public class TUI {
 //				manager22list.stream().forEach((dto) -> {System.out.println(dto);});
 				break;
 			case 0 : 
+				Map<String,Object> member0param = new HashMap();
+				member0param.put("sid", sid);
+				controller.execute("/member", 7, member0param);
 				return ;
-				
 			}
 			
 		}
@@ -305,6 +312,9 @@ public class TUI {
 				break;
 				
 			case 0 : 
+				Map<String,Object> manager0param = new HashMap();
+				manager0param.put("sid", sid);
+				controller.execute("/member", 7, manager0param);
 				return ;
 				
 			}

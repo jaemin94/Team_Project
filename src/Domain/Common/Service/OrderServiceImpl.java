@@ -46,18 +46,18 @@ public class OrderServiceImpl implements OrderService {
 	
 		
 		// 상품 주문하기
-		public boolean reqOrder(String id, int product_code, int odr_amount) throws Exception {
+		public boolean reqOrder(String sid, String id, String role, int product_code, int odr_amount) throws Exception {
 		    MemberDto mdto = new MemberDto();
 		    ProdDto pdto = new ProdDto();
 		    OrderDto odto = new OrderDto();
 		    
-		    String role = id;
+		    
 		    if (!role.equals("Role_user")) {
 		        System.out.println("[WARN] 회원만 주문 할 수 있습니다.");
 		        return false;
 		    }
 
-		    mdto = memberService.memberSearchOne(role, id);
+		    mdto = memberService.memberSearchOne(sid, id);
 		    if (mdto != null) {
 		        pdto = productService.reqProd(product_code);
 		        if (pdto != null) {
@@ -145,8 +145,7 @@ public class OrderServiceImpl implements OrderService {
 //		String role = memberService.getRole(login_sid);
 		String role = login_sid;
 		
-		if(role.equals("Role_Member"))
-		{
+		if(role.equals("Role_Member")) {
 		int result = oDao.insert(dto);
 		if(result > 0)
 			return true;

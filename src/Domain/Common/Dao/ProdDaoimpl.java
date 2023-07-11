@@ -104,7 +104,7 @@ public class ProdDaoimpl extends ConnectionPool implements ProdDao{
 	public int update(ProdDto dto)
 	{
 		try {
-			pstmt = conn.prepareStatement("update tbl_product set product_name =  ?, amount = ?,prod_price = ? where product_code = ?");
+			pstmt = conn.prepareStatement("update tbl_product set product_name =  ?, amount = ?, prod_price = ? where product_code = ?");
 			pstmt.setString(1, dto.getProduct_name());
 			pstmt.setInt(2, dto.getAmount());
 			pstmt.setInt(3, dto.getProd_price());

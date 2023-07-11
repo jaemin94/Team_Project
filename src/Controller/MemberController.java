@@ -169,7 +169,7 @@ public class MemberController implements SubController{
 			result.put("result", rValue);
 			return result;
 
-			// fh그인
+			// 로그인
 		} else if (serviceNo == 6) {
 			String id = (String) param.get("id");
 			String pw = (String) param.get("pw");
@@ -186,14 +186,13 @@ public class MemberController implements SubController{
 				e.printStackTrace();
 			}
 
-			// 4 로그아웃
 			return result;                                                                                     
-
+			// 로그아웃
 		} else if (serviceNo == 7) {
 
 			String sid = (String) param.get("sid");
 
-			if (sid != null) {
+			if (sid == null) {
 				System.out.println("[ERROR] Data Validation Check Error!");
 				return null;
 			}

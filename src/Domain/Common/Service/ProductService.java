@@ -13,10 +13,10 @@ public interface ProductService {
 	ProdDto reqProd(int product_code) throws Exception;
 
 	//+ addProd(String sid, int product_code, String product_name): boolean
-	boolean addProd(String id, ProdDto dto) throws Exception;
+	boolean addProd(String role, ProdDto dto) throws Exception;
 
 	//+updateProd(String sid, int prodcuct_code) : boolean
-	boolean updateProd(String id, ProdDto dto) throws Exception;
+	boolean updateProd(String role, ProdDto dto) throws Exception;
 
 	boolean updateProdAmount(int product_code, ProdDto dto) throws Exception;
 

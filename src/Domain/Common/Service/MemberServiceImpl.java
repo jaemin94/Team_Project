@@ -127,16 +127,27 @@ public class MemberServiceImpl implements MemberService {
 	
 	//로그인
 	public Map<String, Object> login(String id, String pw) throws Exception{
-		//1 ID/PW 체크 ->Dao 전달받은 id와 일치하는 정보를 가져와서 Pw일치 확인
 		MemberDto dbDto = dao.select(id);
-		if(!id.equals(dbDto.getId())) {
-			System.out.println("[ERROR] Login Fail... 아이디가 일치하지 않습니다");
+		
+		if(dbDto == null || !pw.equals(dbDto.getPw())) {
+			System.out.println("[ERROR] Login Fail... 로그인에 실패하였습니다.");
 			return null;
 		}
-		if(!pw.equals(dbDto.getPw())) {
-			System.out.println("[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
-			return null;
-		}
+		
+		
+		
+		
+//		if(!id.equals(dbDto.getId())) {
+//			System.out.println("[ERROR] Login Fail... 아이디가 일치하지 않습니다");
+//			return null;
+//		}
+//		if(!pw.equals(dbDto.getPw())) {
+//			System.out.println("[ERROR] Login Fail... 패스워드가 일치하지 않습니다");
+//			return null;
+//		}
+		
+		
+		
 		//2 사용자에대한 정보(Session)을 MemberService에 저장
 		String sid=UUID.randomUUID().toString();
 		Session session = new Session(sid,dbDto.getId(),dbDto.getRole(), dbDto.getAdr_addr());
@@ -153,7 +164,7 @@ public class MemberServiceImpl implements MemberService {
 	//로그아웃
 	public void logout(String sid) {
 		sessionMap.remove(sid);
-
+		return ;
 	}
 	
 
