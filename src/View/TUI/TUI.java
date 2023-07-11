@@ -68,7 +68,7 @@ public class TUI {
 		param.put("id", id);
 		param.put("pw", pw);
 		
-		Map<String,Object> result = controller.execute("/member", 5, param);
+		Map<String,Object> result = controller.execute("/member", 6, param);
 		String sid = (String)result.get("sid");
 		String role = (String)result.get("role");
 		if(sid != null)
@@ -77,6 +77,9 @@ public class TUI {
 			this.id = id;
 			this.role = role;
 		}
+		
+		
+		System.out.print("Flag!! ");
 		
 		
 		//임의 지울것
@@ -93,9 +96,9 @@ public class TUI {
 			System.out.println("--------------------------");
 			System.out.println("회원메뉴");
 			System.out.println("--------------------------");
-			System.out.println("[상품]			[주문]");
-			System.out.println("11. 상품조회하기	");
-			System.out.println("12. 상품주문하기");	
+			System.out.println("[상품]			[회원]			[주문]");
+			System.out.println("11 상품조회하기		21 회원정보조회 	31 주문 전체조회"	);
+			System.out.println("12 상품주문하기");	
 			System.out.println("0. 로그아웃");
 			System.out.print("번호 : ");
 			int num = sc.nextInt();
@@ -129,13 +132,21 @@ public class TUI {
 				break;
 
 			case 21 :
-				Map<String, Object> result21memb = controller.execute("/order", 1, null);
+				Map<String,Object> member21param = new HashMap();
+				member21param.put("sid", sid);
+				member21param.put("user_id", this.id);
+				
+				Map<String, Object> member21result = controller.execute("/member", 2, member21param);
+				
+				MemberDto member21mdto = (MemberDto) member21result.get("result");
+				
+				System.out.printf(" user id: %s \n user name: %s \n user address: %s \n", member21mdto.getId(), member21mdto.getusername(), member21mdto.getAdr_addr());
 				
 				
 				
-				result21memb = null;
+//				List<MemberDto> manager22list = (List<MemberDto>) manager22result.get("result");
+//				manager22list.stream().forEach((dto) -> {System.out.println(dto);});
 				break;
-				
 			case 0 : 
 				return ;
 				
@@ -150,22 +161,21 @@ public class TUI {
 			System.out.println("관리자메뉴");
 			System.out.println("--------------------------");
 			System.out.println("[상품]			[회원]			[주문]");
-			System.out.println("1 상품조회하기		5 회원전체조회 		6 주문 전체조회"	);
-			System.out.println("2 상품추가하기					7 주문 단건조회"		);
-			System.out.println("3 상품수정하기		 			8 주문 완료삭제	"		);
-			System.out.println("4 상품삭제하기									"	);	
-			System.out.println("9  ");
-			System.out.println("10 ");
+			System.out.println("11 상품조회하기		21 회원전체조회	 	31 주문 전체조회"	);
+			System.out.println("12 상품추가하기		22 회원단건조회	 	32 주문 단건조회"		);
+			System.out.println("13 상품수정하기 					33 주문 완료삭제	"		);
+			System.out.println("14 상품삭제하기									"	);	
+			System.out.println("0. 로그아웃");
 			System.out.print("번호 : ");
 			int num = sc.nextInt();
 			switch(num)
 			{
-			case 1:
+			case 11:
 				Map<String, Object> result = controller.execute("/product", 1, null);
 				List<ProdDto> list = (List<ProdDto>) result.get("result");
 				list.stream().forEach((dto) -> {System.out.println(dto);});
 				break;
-			case 2:
+			case 12:
 				System.out.print("상품코드 상품명 재고량 상품가격 입력 : ");
 				int product_code = sc.nextInt();
 				String product_name = sc.next();
@@ -186,7 +196,7 @@ public class TUI {
 					System.out.println("[INFO] 상품 등록 완료!");
 				
 				break;
-			case 3:
+			case 13:
 				
 				System.out.print("상품명 재고량 상품가격 상품코드 입력 : ");
 				
@@ -208,7 +218,7 @@ public class TUI {
 					System.out.println("[INFO] 상품 수정 완료!");
 				break;
 				
-			case 4 :
+			case 14 :
 				System.out.print("삭제할 상품코드 입력 : ");
 				int product_code2 = sc.nextInt();
 
@@ -224,7 +234,7 @@ public class TUI {
 					System.out.println("[INFO] 상품 삭제 완료!");
 				break;
 				
-			case 5 :
+			case 21 :
 				Map<String,Object> param4 = new HashMap();
 				param4.put("sid", sid);
 				Map<String, Object> result5 = controller.execute("/member", 1, param4);
@@ -233,12 +243,38 @@ public class TUI {
 			
 				break;
 				
-			case 6 :
+			case 22 :
+				Map<String,Object> manager22param = new HashMap();
+				manager22param.put("sid", sid);
+				
+				System.out.print("찾을 사용자 id: ");
+				String user_id = sc.next();
+				
+				manager22param.put("user_id", user_id);
+				
+				Map<String, Object> manager22result = controller.execute("/member", 2, manager22param);
+				
+				MemberDto manager22mdto = (MemberDto) manager22result.get("result");
+				
+				System.out.printf(" user id: %s \n user name: %s \n user address: %s \n", manager22mdto.getId(), manager22mdto.getusername(), manager22mdto.getAdr_addr());
+				
+				
+				
+				
+//				List<MemberDto> manager22list = (List<MemberDto>) manager22result.get("result");
+//				manager22list.stream().forEach((dto) -> {System.out.println(dto);});
+				break;
+				
+				
+			case 31 :
 				Map<String, Object> result6 = controller.execute("/order", 1, null);
 				List<OrderDto> list2 = (List<OrderDto>) result6.get("result");
 				list2.stream().forEach((dto) -> {System.out.println(dto);});
 				break;
-			case 7:
+				
+				
+				
+			case 32:
 				System.out.print("주문 번호 입력 : ");
 				String order_id = sc.next();
 				Map<String,Object> param3 = new HashMap();
@@ -252,7 +288,7 @@ public class TUI {
 				System.out.println(dto.toString());
 				break;
 				
-			case 8 :
+			case 33 :
 				System.out.print("삭제할 주문번호 입력 : ");
 				String order_id1 = sc.next();
 
@@ -268,9 +304,7 @@ public class TUI {
 					System.out.println("[INFO] 상품 삭제 완료!");
 				break;
 				
-			case 10 : 
-			
-				
+			case 0 : 
 				return ;
 				
 			}

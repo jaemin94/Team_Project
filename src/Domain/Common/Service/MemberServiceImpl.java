@@ -48,35 +48,52 @@ public class MemberServiceImpl implements MemberService {
 	// 회원 전체 조회(관리자)
 	public List<MemberDto> memberSearch(String sid) throws Exception{
 		
-		String role = sid;
+		Session session = sessionMap.get(sid);
+		
+		String role = session.getRole();
 		
 		if(role.equals("Role_Member"))		
 			return dao.select();
 		return null;
 	}
 	
-	// 회원 단건 조회(회원)
+	
+	
+	
+	
+	// 회원 단건 조회
 	public MemberDto memberSearchOne(String sid,String id) throws Exception{
 		
-			String role = sid;
-            if(role.equals("Role_user"))		
-			return dao.select(id);
+//		System.out.println("Flag!! MemberServiceImpl65: " + sid + " / " + id);
 		
+		Session session = sessionMap.get(sid);
+	
+        if(session != null)
+            return dao.select(id);
 		return null;
 	}	
 	
+//	// 회원 단건 조회(회원)
+//	public MemberDto memberSearchOne(String sid,String id) throws Exception{
+//		
+//			String role = sid;
+//            if(role.equals("Role_user"))		
+//			return dao.select(sid);
+//		
+//		return null;
+//	}	
+//	
 	
-	 
-	// 회원 단건 조회(관리자)
-	public MemberDto memberSearch(String id,String sid) throws Exception {
-		String role = sid;
-		
-		if(role.equals("Role_Member"))
-			return dao.select(id);
-		
-		return null;
-	}
-	
+//	// 회원 단건 조회(관리자)
+//	public MemberDto memberSearch(String id,String sid) throws Exception {
+//		String role = sid;
+//		
+//		if(role.equals("Role_Member"))
+//			return dao.select(id);
+//		
+//		return null;
+//	}
+//	
 	
 	//회원 수정하기 -- 본인확인
 	public boolean memberUpdate(MemberDto dto,String sid) throws Exception{
@@ -146,7 +163,7 @@ public String getRole(String sid) {
 //		System.out.println("Flag!! MemberService149: " + sid);
 //		System.out.println("Flag!! MemberService150: " + sessionMap.get(sid));
 		Session session = sessionMap.get(sid);
-		System.out.println("getRole's Session : " + session);
+//		System.out.println("getRole's Session : " + session);
 		if(session!=null) {
 			return session.getRole();
 			}

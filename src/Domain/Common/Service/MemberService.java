@@ -12,9 +12,13 @@ public interface MemberService {
 
 	List<MemberDto> memberSearch(String sid) throws Exception;
 
+	
+	//회원 단건 조회
 	MemberDto memberSearchOne(String sid, String id) throws Exception;
 
-	MemberDto memberSearch(String id, String sid) throws Exception;
+	
+	
+//	MemberDto memberSearch(String id, String sid) throws Exception;
 
 	//회원 수정하기 -- 본인확인
 	boolean memberUpdate(MemberDto dto, String sid) throws Exception;
