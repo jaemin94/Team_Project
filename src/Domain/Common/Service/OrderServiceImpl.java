@@ -125,7 +125,6 @@ public class OrderServiceImpl implements OrderService {
 		// 주문 전체확인
 	public List<OrderDto> getOrder() throws Exception
 	{
-//		System.out.println("Product Service's reqAllProd()");
 		return oDao.select();
 	}
 	
@@ -137,23 +136,6 @@ public class OrderServiceImpl implements OrderService {
 	
 	}
 	
-	// 주문하기
-	public boolean addOrder(OrderDto dto, String login_sid)
-	{
-		System.out.println("OrderService's addOrder()");
-		
-//		String role = memberService.getRole(login_sid);
-		String role = login_sid;
-		
-		if(role.equals("Role_Member"))
-		{
-		int result = oDao.insert(dto);
-		if(result > 0)
-			return true;
-		}
-		return false;
-		
-	}
 	
 	// 주문정보 수정
 	public boolean updateOrder(OrderDto dto, String login_sid)
@@ -161,7 +143,6 @@ public class OrderServiceImpl implements OrderService {
 		System.out.println("OrderService's updateOrder()");
 		
 		
-//		String role = memberService.getRole(login_sid);
 		String role = login_sid;
 		
 		if(role.equals("Role_Member"))
@@ -180,17 +161,18 @@ public class OrderServiceImpl implements OrderService {
 	public boolean removeOrder(String sid,String order_id)
 	{
 		System.out.println("OrderService's removeOrder()");
-//		String role = memberService.getRole(sid);
-		// sid 값을 받아 롤을 가져오는 작업
 		String role = sid;
 		if(role.equals("Role_Member"))
 		{
 		int result = oDao.delete(order_id);
 		if(result > 0)
 			return true;
+		System.out.println("role : " + role);
 		}
 		return false;
 	}
+
+	
 
 
 	

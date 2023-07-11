@@ -68,7 +68,7 @@ public class TUI {
 		param.put("id", id);
 		param.put("pw", pw);
 		
-		Map<String,Object> result = controller.execute("/member", 5, param);
+		Map<String,Object> result = controller.execute("/member", 6, param);
 		String sid = (String)result.get("sid");
 		String role = (String)result.get("role");
 		if(sid != null)
@@ -154,7 +154,7 @@ public class TUI {
 			System.out.println("2 상품추가하기					7 주문 단건조회"		);
 			System.out.println("3 상품수정하기		 			8 주문 완료삭제	"		);
 			System.out.println("4 상품삭제하기									"	);	
-			System.out.println("9  ");
+			System.out.println("9 주문삭제 ");
 			System.out.println("10 ");
 			System.out.print("번호 : ");
 			int num = sc.nextInt();
@@ -267,6 +267,27 @@ public class TUI {
 				if(isDelete==true)
 					System.out.println("[INFO] 상품 삭제 완료!");
 				break;
+				
+			case 9 : 
+				String member_id = sc.next();
+				int odr_amount = sc.nextInt();
+				String odr_id = sc.next();
+				
+				Map<String,Object> result9 = new HashMap();
+				result9.put("member_id", member_id);
+				result9.put("odr_amount", odr_amount);
+				result9.put("price", 0);
+				result9.put("order_id", odr_id);
+				result9.put("role", role);
+				
+				Map<String, Object> result10 = controller.execute("/order", 4, result9);
+				Boolean isUpdated1 = (Boolean)result10.get("result");
+				if(isUpdated1==true)
+					System.out.println("[INFO] 주문 수정 완료!");
+				System.out.println("role : " + role);
+				break;
+				
+				
 				
 			case 10 : 
 			

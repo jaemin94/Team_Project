@@ -54,7 +54,6 @@ public class ProductServiceImpl implements ProductService {
 	// 상품 수정하기
 	public boolean updateProd(String id, ProdDto dto) throws Exception {
 		System.out.println("Product Services's updateProd()");
-//		String role = memberService.getRole(id);
 		String role = id;
 		if(role.equals("Role_Member")) {
 			int result = dao.update(dto);
@@ -82,7 +81,6 @@ public class ProductServiceImpl implements ProductService {
 	// 상품 삭제하기
 	public boolean removeProd(String sid, int product_code) throws Exception{
 		System.out.println("ProductService's removeProd()");
-//		String role = memberService.getRole(sid);
 		String role = sid;
 		if(role.equals("Role_Member")) {
 			int result = dao.delete(product_code);

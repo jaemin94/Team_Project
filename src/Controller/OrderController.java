@@ -98,28 +98,37 @@ private OrderService service;
 	// 1 파라미터 추출
 	String order_id = (String) param.get("order_id");
 	String member_id = (String) param.get("member_id");
-	Integer product_code = (Integer) param.get("product_code");
-	String product_name = (String) param.get("product_name");
-	String adr_addr = (String) param.get("adr_addr");
 	Integer odr_amount = (Integer) param.get("odr_amount");
 	Integer price = (Integer) param.get("price");
-	String sid=(String) param.get("sid");
+	String role=(String) param.get("role");
 	
 	// 2 입력값 검증
-			if(order_id==null||member_id==null||product_code==null||product_name==null||odr_amount==null||price==null||sid==null) {
+			if(member_id==null||odr_amount==null||order_id==null) {
 				System.out.println("[ERROR]Data Validation Check Error");
 				return null;
 			}
 			
-			// 3 서비스 실행
-			OrderDto dto = new OrderDto(order_id,member_id,product_code,product_name,adr_addr,odr_amount,null,price);
-			System.out.println("Dto : " + dto);
 			
+			// 3 서비스 실행
+		
+			OrderDto dto = new OrderDto(order_id,member_id,odr_amount,price);
+			
+			Boolean rValue=false;
+			try {
+				rValue=service.updateOrder(dto,role);
+			} catch (Exception e) {
+				
+				e.printStackTrace();
+			}
+			
+			System.out.println("Product_Add Block!");
+			Map<String,Object>result= new HashMap();
+			result.put("result", rValue);
+			return result;
 			
 			// 주문 삭제
 } else if (serviceNo == 5) {
 	// 1 파라미터 추출
-//	String sid= (String)param.get("sid");
 	String order_id1 = (String)param.get("order_id1");
 	String role=(String) param.get("role");
 	if(order_id1==null || role == null) {

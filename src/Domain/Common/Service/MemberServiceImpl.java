@@ -58,12 +58,13 @@ public class MemberServiceImpl implements MemberService {
 	// 회원 단건 조회(회원)
 	public MemberDto memberSearchOne(String sid,String id) throws Exception{
 		
-			String role = sid;
-            if(role.equals("Role_user"))		
-			return dao.select(id);
 		
+		Session session = sessionMap.get(sid);
+	
+        if(session != null)
+            return dao.select(id);
 		return null;
-	}	
+	}
 	
 	
 	 
@@ -143,8 +144,6 @@ public class MemberServiceImpl implements MemberService {
 	//역할반환함수 
 public String getRole(String sid) {
 		
-//		System.out.println("Flag!! MemberService149: " + sid);
-//		System.out.println("Flag!! MemberService150: " + sessionMap.get(sid));
 		Session session = sessionMap.get(sid);
 		System.out.println("getRole's Session : " + session);
 		if(session!=null) {

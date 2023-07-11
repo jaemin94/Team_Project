@@ -16,7 +16,7 @@ public interface OrderService {
 	OrderDto getOrder(String order_id);
 
 	// 주문하기
-	boolean addOrder(OrderDto dto, String login_sid);
+//	boolean addOrder(OrderDto dto, String login_sid);
 
 	// 주문정보 수정
 	boolean updateOrder(OrderDto dto, String login_sid);

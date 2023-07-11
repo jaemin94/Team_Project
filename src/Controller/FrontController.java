@@ -33,28 +33,7 @@ public class FrontController {
 		SubController controller = map.get(request);
 		Map<String,Object> result = new HashMap();
 		result = controller.execute(serviceNo,param);
-//		if(controller instanceof MemberController)
-//		{
-//			MemberController down = (MemberController) controller;
-//			result = down.execute(serviceNo,param);
-//			System.out.println("MemberController !");
-//		}
-//		else if(controller instanceof OrderController)
-//		{
-//			OrderController down = (OrderController) controller;
-//			result = down.execute(serviceNo,param);
-//			System.out.println("OrderController !");
-//		}
-//		else if(controller instanceof ProductController)
-//		{
-//			ProductController down = (ProductController) controller;
-//			result = down.execute(serviceNo,param);
-//			System.out.println("ProductController !");
-//		}
-//		else
-//		{
-//			System.out.println("System ERROR please try again");
-//		}
+
 		
 		return result;
 		

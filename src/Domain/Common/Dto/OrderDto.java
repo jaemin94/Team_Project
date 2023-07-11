@@ -45,6 +45,16 @@ public class OrderDto {
 		this.product_code = product_code;
 		this.odr_amount = odr_amount;
 	}
+	
+	
+
+	public OrderDto(String order_id, String member_id, int odr_amount, int price) {
+		super();
+		this.order_id = order_id;
+		this.member_id = member_id;
+		this.odr_amount = odr_amount;
+		this.price = price;
+	}
 
 	public String getOrder_id() {
 		return order_id;

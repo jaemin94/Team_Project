@@ -43,8 +43,39 @@ public class MemberController implements SubController{
 			return result;
 
 			// 회원 단건조회
-			
-			// 회원가입
+		}else if (serviceNo == 2) {
+				// 1 파라미터 추출(생략)
+				String sid = (String) param.get("sid");
+				String user_id = (String) param.get("user_id");
+
+				
+				// 2 입력값 검증(생략)
+				if (user_id == null) {
+					System.out.println("[ERROR] Data Validation Check Error!");
+					return null;
+				}
+				// 3 서비스 실행(서비스모듈작업 이후 처리)
+
+				MemberDto mdto = null;
+
+				
+				try {
+					mdto = service.memberSearchOne(sid, user_id);
+					
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				// 4 View로 전달
+//				System.out.println("Member_Select Block!");
+				Map<String, Object> result = new HashMap();
+				result.put("result", mdto);
+				return result;
+		
+				// 회원가입
+				
 		} else if (serviceNo == 3) {
 			// 1 파라미터 추출
 			String id = (String) param.get("id");
