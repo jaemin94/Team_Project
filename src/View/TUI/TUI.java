@@ -77,6 +77,11 @@ public class TUI {
 			this.id = id;
 			this.role = role;
 		}
+		else
+		{
+			MainMenu();
+			
+		}
 		
 		
 		//임의 지울것
@@ -111,7 +116,7 @@ public class TUI {
 				result11memb = null;
 				break;
 			case 12:
-				String id = sc.next();
+//				String id = sc.next();
 				int product_code = sc.nextInt();
 				int odr_amount = sc.nextInt();
 				Map<String,Object> result12memb = new HashMap();
@@ -119,6 +124,7 @@ public class TUI {
 				result12memb.put("product_code", product_code);
 				result12memb.put("odr_amount", odr_amount);
 				result12memb.put("price", 0);
+				result12memb.put("role", role);
 				
 				Map<String, Object> result12 = controller.execute("/order", 3, result12memb);
 				Boolean isOrdered = (Boolean)result12.get("result");
@@ -179,6 +185,7 @@ public class TUI {
 				param.put("amount", amount);
 				param.put("prod_price", prod_price);
 				param.put("sid", sid);
+				param.put("role", role);
 				
 				Map<String,Object> result2 = controller.execute("/product",3,param);
 				Boolean isInsert = (Boolean)result2.get("result");
@@ -201,6 +208,7 @@ public class TUI {
 				param1.put("prod_price", prod_price1);
 				param1.put("product_code", product_code1);
 				param1.put("sid", sid);
+				param1.put("role", role);
 				
 				Map<String,Object> result3 = controller.execute("/product",4,param1);
 				Boolean isUpdated = (Boolean)result3.get("result");
@@ -217,6 +225,7 @@ public class TUI {
 				
 				param2.put("product_code", product_code2);
 				param2.put("sid", sid);
+				param2.put("role", role);
 				
 				Map<String,Object> result4 = controller.execute("/product",5,param2);
 				Boolean isDeleted = (Boolean)result4.get("result");
@@ -227,6 +236,7 @@ public class TUI {
 			case 5 :
 				Map<String,Object> param4 = new HashMap();
 				param4.put("sid", sid);
+				param4.put("role", role);
 				Map<String, Object> result5 = controller.execute("/member", 1, param4);
 				List<MemberDto> list1 = (List<MemberDto>) result5.get("result");
 				list1.stream().forEach((dto) -> {System.out.println(dto);});
@@ -287,7 +297,24 @@ public class TUI {
 				System.out.println("role : " + role);
 				break;
 				
+			case 16:
+//				String id = sc.next();
+				int product_code3 = sc.nextInt();
+				int odr_amount1 = sc.nextInt();
+				Map<String,Object> result15memb = new HashMap();
+				result15memb.put("member_id", id);
+				result15memb.put("product_code", product_code3);
+				result15memb.put("odr_amount1", odr_amount1);
+				result15memb.put("price", 0);
+				result15memb.put("role", role);
 				
+				Map<String, Object> result16 = controller.execute("/order", 3, result15memb);
+				Boolean isOrdered = (Boolean)result16.get("result");
+				if(isOrdered == true)
+				{
+					System.out.println("[INFO] 주문 완료!");
+				}
+				break;
 				
 			case 10 : 
 			

@@ -49,21 +49,31 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberDto> memberSearch(String sid) throws Exception{
 		
 		String role = sid;
-		
-		if(role.equals("Role_Member"))		
+		System.out.println(role);
+		if(role.equals("Role_Member")) {		
 			return dao.select();
+		}
 		return null;
 	}
 	
 	// 회원 단건 조회(회원)
 	public MemberDto memberSearchOne(String sid,String id) throws Exception{
 		
-		
-		Session session = sessionMap.get(sid);
-	
-        if(session != null)
+		String role = sid;
+//		Session session = sessionMap.get(sid);
+//	
+//        if(session != null)
+		if(role.equals("Role_Member"))
             return dao.select(id);
-		return null;
+		else if(role.equals("Role_user"))
+		{
+			return dao.select(id);
+		}
+		else
+		{
+			return null;
+		}
+		
 	}
 	
 	

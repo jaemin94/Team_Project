@@ -55,8 +55,10 @@ public class ProductServiceImpl implements ProductService {
 	public boolean updateProd(String id, ProdDto dto) throws Exception {
 		System.out.println("Product Services's updateProd()");
 		String role = id;
+		System.out.println(role);
 		if(role.equals("Role_Member")) {
 			int result = dao.update(dto);
+			System.out.println(result);
 			if(result>0)
 				return true;
 		}
@@ -66,14 +68,12 @@ public class ProductServiceImpl implements ProductService {
 	// 상품 주문시 재고 자동 업데이트
 	public boolean updateProdAmount(int product_code, ProdDto dto) throws Exception {
 		System.out.println("Product Services's updateProd()");
-		String id = null;
-		
-		String role = id;
-		if(role.equals("Role_Member")) {
+
+
 			int result = dao.update(dto);
 			if(result>0)
 				return true;
-		}
+		
 		
 		return false;
 	}

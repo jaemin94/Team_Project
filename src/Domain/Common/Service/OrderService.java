@@ -7,7 +7,7 @@ import Domain.Common.Dto.OrderDto;
 public interface OrderService {
 
 	//		
-	boolean reqOrder(String id, int product_code, int odr_amount) throws Exception;
+	boolean reqOrder(String sid,String id, int product_code, int odr_amount) throws Exception;
 
 	// 주문 전체확인
 	List<OrderDto> getOrder() throws Exception;

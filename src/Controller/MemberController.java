@@ -25,12 +25,14 @@ public class MemberController implements SubController{
 		if (serviceNo == 1) {
 			// 1 파라미터 추출(생략)
 			String sid = (String) param.get("sid");
+			String role= (String) param.get("role");
+			System.out.println(role);
 			// 2 입력값 검증(생략)
 
 			// 3 서비스 실행(서비스모듈작업 이후 처리)
 			List<MemberDto> list = null;
 			try {
-				list =  service.memberSearch(sid);
+				list =  service.memberSearch(role);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

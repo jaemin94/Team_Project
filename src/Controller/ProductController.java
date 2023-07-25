@@ -64,6 +64,7 @@ public class ProductController implements SubController{
 			String product_name = (String)param.get("product_name");
 			Integer amount = (Integer)param.get("amount");
 			Integer prod_price = (Integer)param.get("prod_price");
+			String role = (String)param.get("role");
 			
 			if(product_code==null||product_name == null || amount ==null) {
 				System.out.println("[ERROR] Data Validation Check Error");
@@ -74,7 +75,7 @@ public class ProductController implements SubController{
 			
 			Boolean rValue = false;
 			try {
-				rValue = service.addProd(sid,dto);
+				rValue = service.addProd(role,dto);
 			} catch (Exception e) {
 				
 				e.printStackTrace();
@@ -92,6 +93,7 @@ public class ProductController implements SubController{
 			String product_name = (String)param.get("product_name");
 			Integer amount = (Integer)param.get("amount");
 			Integer prod_price = (Integer)param.get("prod_price");
+			String role = (String)param.get("role");
 			
 			
 			if(product_code==null||product_name==null||amount==null) {
@@ -103,7 +105,7 @@ public class ProductController implements SubController{
 			
 			Boolean rValue=false;
 			try {
-				rValue=service.updateProd(sid,dto);
+				rValue=service.updateProd(role,dto);
 			} catch (Exception e) {
 				
 				e.printStackTrace();
@@ -112,11 +114,14 @@ public class ProductController implements SubController{
 			System.out.println("Product_Add Block!");
 			Map<String,Object>result= new HashMap();
 			result.put("result", rValue);
+			System.out.println(result);
 			return result;
+			
 			
 			// 상품 삭제
 		}else if(serviceNo==5) {
 			String sid= (String)param.get("sid");
+			String role = (String)param.get("role");
 			Integer product_code = (Integer)param.get("product_code");
 			if(sid==null||product_code==null) {
 				System.out.println("[ERROR]Data Validation Check Error");
@@ -124,7 +129,7 @@ public class ProductController implements SubController{
 			}
 			Boolean rValue = false;
 			try {
-				rValue=service.removeProd(sid,product_code);
+				rValue=service.removeProd(role,product_code);
 			} catch (Exception e) {
 				
 				e.printStackTrace();
